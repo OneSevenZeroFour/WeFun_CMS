@@ -1,0 +1,193 @@
+.userName{color:red !important;}
+.hdtopbg{
+		a:hover{color:#ff5c00}
+		background-color:#F5F4F6;
+		width:100%;
+		height:42px;
+		display:block;
+		background: url(http://static.boodoll.cn/mall/v16//images/index/top-navbg.png) repeat-x;
+}
+.hd-top{
+		
+	    height: 42px;
+	    z-index: 100;
+	    position: relative;
+		 a{color:#666;}
+		 a:hover{color:#ff5c00;}
+		height:42px;
+    	position: relative;
+    	.header-quick-menu{
+    		padding-top: 5px;
+    		height: 37px;
+    		display:block;
+
+    	}
+		.lt>li{
+			float:left;
+			padding:0 20px;
+		    position: relative;
+		    height: 36px;
+		    line-height: 36px;
+		    border-right: 1px solid #e7e7e7;
+		    display: inline-block;
+		    font-weight:600;
+		    font-size:14px;
+		}
+		li.curpage{
+    			border: 1px solid #cccccc;
+			    border-bottom: none;
+			    -moz-border-radius: 2px;
+			    -webkit-border-radius: 2px;
+			    -o-border-radius: 2px;
+			    -ms-border-radius: 2px;
+			    border-radius: 2px;
+			    background-color: #ffffff;
+			    a{color: #FF5c00;}
+    	}
+    	li.phonebox{
+    		padding: 0 10px;
+    		position:relative;
+			i{
+				margin-right: 12px;
+			    position: relative;
+			    left: 0;
+			}
+			.border1{
+				display:none;
+				width:84px;
+				height:34px;
+				border:1px solid #FF9900;
+				position:absolute;
+				top:0;
+				left:10px;
+				border-bottom-color:#fff;
+			}
+    	}
+    	.icon-mobile-phone {
+		    background-position: -320px -240px;
+		    width: 12px;
+		    height: 20px;
+		    cursor: pointer;
+		    top: 7px;
+		    -webkit-transition: all .2s ease;
+		    transition: all .2s ease;
+		}
+
+    	.phonehidediv {
+		    position: absolute;
+		    top: 35px;
+		    border: 1px solid #FF9900;
+		    background-color: #fff;
+		    left: 10px;
+		    display: none;
+		}
+		.phonediv {
+			i.hover{background-position:-320px -265px;}
+		    padding: 0 10px;
+		    z-index: 20;
+		}
+    	.rt{
+    		position: absolute;
+		    right: 0;
+		    top: 0;
+		    height: 32px;
+		    line-height: 32px;
+		    z-index: 110;
+		    margin-top: 6px;
+		    display:block;
+			
+			li:hover b{
+				border-style:dashed dashed solid;
+				border-color:transparent transparent #FF9900;
+				top:-3px;
+			}
+			.border2,.border3{
+				position:absolute;
+				border:1px solid #FF9900;
+				width:72px ;
+				height:32px;
+				left:4px;
+				top:0;
+				border-bottom-color:#fff;
+				display:none;
+			}
+			li{
+				text-align:center;
+				display: inline-block;
+			    padding: 0 8px;
+			    position: relative;
+			    float: left;
+
+			    b{
+			    	cursor: pointer;
+				    -webkit-transition: all .2s ease;
+				    transition: all .2s ease;
+				    width: 0;
+				    line-height: 0;
+				    height: 0;
+				    font-size: 0;
+				    border-width: 4px;
+				    border-style: solid dashed dashed;
+				    border-color: #666666 transparent transparent;
+				    position: relative;
+				    left: 0;
+				    overflow: hidden;
+				    display: inline-block;
+				    zoom: 1;
+			    }
+			}
+			.resut{
+			    height: 28px;
+			    line-height: 32px !important;
+			    text-align: center;
+			    z-index: 120;
+			    width:66px;
+			    position: relative;
+			    overflow: hidden;
+			}
+
+			// .ssn_hover_div2{
+			//  	height: 28px;
+			//     line-height: 32px !important;
+			//     text-align: center;
+			//     z-index: 120;
+			//     width:66px;
+			//     position: relative;
+			//     overflow: hidden;
+			// }
+			.Theader_down01,.Theader_down02{
+				background-color: #ffffff;
+			    position: absolute;
+			    border: 1px solid #FF9900;
+			    text-align: left;
+			    padding: 0px 5px 3px 4px;
+			    width: 63px;
+			    top: 33px;
+			    left: 4px;
+			    line-height: 21px;
+			    display: none;
+			    z-index: 20;
+			    border-top-color: #fff;
+			    a{text-align:left;display:block;line-height:20px;}
+			}
+			.ssn-separator {
+							    padding: 0;
+							    width: 0;
+							    vertical-align: top;
+							    margin: 0 3px 0 1px;
+							    top: 9px;
+							    line-height: 14px;
+							    left: 0;
+							    height: 14px;
+							    font-size: 0;
+							    display: inline-block;
+							    border-left: 1px solid #cccccc;
+							}
+			#loginBtn,#regBtn{color:#FF5c00 !important;}
+
+    	}
+
+		.ssn-login-info {
+		    color: #666666;
+		}
+}
