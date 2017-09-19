@@ -1,0 +1,78 @@
+body, ul, li, span, p, b, a,h1,h2,h3,h4,h5,h6,div,button{
+  margin: 0;
+  padding: 0;
+}
+
+button,input:focus{outline:none}
+
+body {
+  background-color: #E9E9E9;
+  font-size: 12px;
+}
+.lt{float:left;}
+.rt{float:right;}
+
+img {
+    border: 0;
+    display:block;
+}
+.wrap{width:1090px;margin:0 auto;}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+
+i, cite, em, var, address, dfn {
+    font-style: normal;
+}
+.register-form li .inputCont .codeWrap .disabled, .otherwise .othercount a, .login-nav ul li i, .login-form .submit-signin, .register-success .check-email-now, .register-success .shoppingnow, .register-success .goto-check a, .sign-nav i, .register-success i, .register-form li .inputCont i, .register-form li .inputCont .get-mobile-code, .register-form li .inputCont .argWrap .submit-signup, .register-form li .next_step{background: url(./img/register.png) no-repeat;}
+
+
+.specLeftT, .specRightT, .specLeftF, .specRightF, .salePromotionType dt, .choose_num_ul a, .computing_act input, .prom_act a, .remind_ul li i, .shopping_car, .product_inform, .tb-msg .tb-stop, .certified_div dl dt i, .smile_face, .star_rate, .product_plus_icon, .buy_suit, .rank_Num, .purchase, .btn-comment, .L-kuai, .jinghua, .p_star, .dianzan li, .see_consult_p a.qqIcon, .see_consult_p a.publishIcon, .purchase_bottom, .shopping_coming, .shopping_finish, .shopping_going, .shopping_over {
+    background-image: url(./img/icon.png);
+    background-repeat: no-repeat;
+}
+
+.specLeftT, .specRightT, .specLeftF, .specRightF {
+    position: absolute;
+    width: 12px;
+    float: left;
+    height: 21px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.bdshare-button-style1-24 a, .bdshare-button-style1-24 .bds_more {
+    float: left;
+    font-size: 18px;
+    padding-left: 25px;
+    line-height: 24px;
+    height: 24px;
+    background-image: url(./img/icons_1_24.png);
+   
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 6px 6px 6px 0;
+}
+
+.sprite-icon {
+    background-image: url(./img/sprite215new.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    overflow: hidden;
+    float: left;
+    zoom: 1;
+}
+.fl {float: left;}
+.mcart-p-price strong, .mcart-p-market strong {
+    color: #ff5c00;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Verdana, Geneva, sans-serif;
+}

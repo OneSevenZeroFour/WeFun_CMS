@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base href="../index.html">
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="stylesheet" href="./css/login.css">
+	<script src="lib/require.js" data-main="js/login"></script>
+</head>
+<body>
+	<header></header>
+	<div class='logobg'>
+		<div class='logo wrap'>
+			<a href="#"><img src="img/logo.png" alt=""></a>
+		</div>
+	</div>
+	<div class='main wrap'>
+		<div class='wrapper'>
+			<div class='sign-content register-form-height'>
+				<div class='sign-nav'>
+					<ul>
+						<li class=''>
+							<a href="./html/reg.html">
+								<i></i>注册
+							</a>
+						</li>
+						<li class='selected'>
+							<a href="javascript:;">
+								<i></i>登录
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+					<div class='sign-right'>
+						<div class='form' >
+							<ul class='register-form clear'>
+								<li>
+									<label for="email" class='label'>账户名</label>
+									<div class="inputCont">
+										<input type="text" id='email' class='g-ipt' placeholder='请填入手机号' autocomplete='off' maxlength='11'>
+										<div id='emailTip'>
+											
+										</div>
+										<i class='email-icon'></i>
+									</div>
+								</li>
+								<li>
+									<label for="email" class='label'>密码：</label>
+									<div class="inputCont">
+										<input type="password" id='password1' class='g-ipt' placeholder='请填入密码' autocomplete='off' maxlength='20'>
+										<div id='password1Tip'>
+										
+											
+										</div>
+										<i class='password-icon'></i>
+									</div>
+								</li>
+								
+								
+								<li id='mobile-code'>
+									<label for="email" class='label'>短信验证码：</label>
+									<div class="inputCont">
+										<div class='codeWrap codev'>
+											<!-- <input type="hidden" id='Hidden1'> -->
+											<input type="text" id='message' maxlength='6' class='codetxt' autocomplete='off' placeholder='点我获取验证码'>
+											<!-- <div class='get-mobile-code' id='getmobilecode' ></div> -->
+											<!-- <div id='messageTip'></div> -->
+										</div>
+									</div>
+								</li>
+								<li>
+									<label for="email" class='label'>验证码：</label>
+									<div class="inputCont">
+										<div class='codeWrap'>
+											<!-- <input type="hidden" id='Hidden1'> -->
+											<input type="text" id='message2' maxlength='6' class='codetxt' autocomplete='off'>
+									
+											<div id='messageTip'></div>
+										</div>
+									</div>
+								</li>
+								<li style="min-height:20px;">
+									<label for="email" class='label'>&nbsp;</label>
+									<div class="inputCont">
+										<div class='argWrap'>
+											<input type="checkbox" id='agreement' class='checkbox' >
+											<label for="agreement">
+												<p class='agreement-text'>
+													记住我（30天内免登陆）<a href="javascript:;" id='forget'>忘记密码？</a>
+												</p>
+											</label>
+										</div>
+										
+									</div>
+								</li>
+								<li class='submit-area'>
+									<label for="email" class='label'>&nbsp;</label>
+									<div class="inputCont">
+										<div class='argWrap'>
+											<input type="submit" id="reg_btn" class='submit-signup' value>
+											<div id='agreementTip' class='stickTips'>
+											
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<div class='otherwise'>
+								<div class='sign-title-right'>使用合作网站账号登录母婴之家</div>
+								<ul class='sign-right-list'>
+									<li class='othercount'><a href="" class='weibo'></a></li>
+									<li class='othercount'><a href="" class='alipay'></a></li>
+									<li class='othercount'><a href="" class='qq'></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class='sign-left'><a href=""><img src="http://img.muyingzhijia.com/product/web/toutu/150211-340x300-2.jpg" alt="新人注册三重礼" title='新人注册三重礼'></a></div>
+				
+				<!-- <div class='login'>
+					
+				</div> -->
+			</div>
+		</div>
+
+	</div>
+	<footer></footer>
+</body>
+</html>
