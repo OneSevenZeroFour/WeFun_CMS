@@ -1,3 +1,5 @@
-node_modules
-*.mp4
-*.mp3
+﻿#过滤文件夹
+node_modules/
+*wmv
+*zip
+*mp4
