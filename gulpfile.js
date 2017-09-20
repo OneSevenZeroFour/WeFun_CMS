@@ -64,10 +64,10 @@ gulp.task('server',function(){
 		// server:'./src/',
 
 		// 代理服务器
-		proxy:'http://localhost:10087',
+		proxy:'http://localhost:10088',
 
 		// 端口
-		port:2017,
+		port:2018,
 
 		// 监听文件修改，自动刷新浏览器
 		files:['./src/**/*.html','./src/css/*.css','./src/api/*.php']
