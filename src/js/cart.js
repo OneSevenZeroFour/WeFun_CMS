@@ -2,9 +2,16 @@
 	购物车js
  */
 require(['config'],function(){
-	require(['jquery','headers','location','common','text!foot'],function($,foot,lct){
+	require(['jquery','headers','location', 'cookie','common','text!foot'],function($,foot,lct,cookie){
 		$('header').load('html/header.html #hd .hdtopbg',()=>{
-			lct.getCityName($("#location")[0]);
+			if ($.cookie('location')) {
+					$("#location")[0].innerText = $.cookie('location');
+			} else {
+					lct.getCityName($("#location")[0]);
+			}
+			lct.getProvinceFromMysql();
+			lct.enterList($(".province"));
+			lct.enterList($(".city"));
 		});
 		//先获取cookie看是否为空
 		var arr_goodlist = [];

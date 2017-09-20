@@ -2,9 +2,16 @@
 	列表页JS
  */
 require(['config'],function(){
-	require(['jquery','text!head','text!foot','location','common'],function($,head,foot,lct){
+	require(['jquery','text!head','text!foot','location', 'cookie','common'],function($,head,foot,lct,cookie){
 		$('header').html(head);
-		lct.getCityName($("#location")[0]);
+		if ($.cookie('location')) {
+				$("#location")[0].innerText = $.cookie('location');
+		} else {
+				lct.getCityName($("#location")[0]);
+		}
+		lct.getProvinceFromMysql();
+		lct.enterList($(".province"));
+		lct.enterList($(".city"));
 
 		require(['headers'],function(){
 

@@ -2,9 +2,16 @@
 	注册页面js
 */
 require(['config'],function(){
-	require(['jquery','location','headers','common'],function($,lct){
+	require(['jquery','location', 'cookie','headers','common'],function($,lct,cookie){
 		$('header').load('html/header.html #hd .hdtopbg',()=>{
-			lct.getCityName($("#location")[0]);
+			if ($.cookie('location')) {
+					$("#location")[0].innerText = $.cookie('location');
+			} else {
+					lct.getCityName($("#location")[0]);
+			}
+			lct.getProvinceFromMysql();
+			lct.enterList($(".province"));
+			lct.enterList($(".city"));
 		});
 		$('footer').load('html/footer.html #footer .tfc_footer');
 

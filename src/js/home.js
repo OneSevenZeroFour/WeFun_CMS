@@ -4,6 +4,8 @@
 require(['config'], function() {
     require(['jquery', 'text!head', 'headers', 'jacklunbo', 'text!foot', 'location', 'cookie', 'common'], function($, head, headers, jacklunbo, foot, lct, cookie) {
         $('header').html(head);
+
+
         if ($.cookie('location')) {
             $("#location")[0].innerText = $.cookie('location');
         } else {

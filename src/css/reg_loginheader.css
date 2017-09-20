@@ -34,6 +34,18 @@
 
 .hd-top .rt { position: absolute; right: 0; top: 0; height: 32px; line-height: 32px; z-index: 110; margin-top: 6px; display: block; }
 
+.hd-top .rt .ssn_home3:hover { background-color: white; border: 1px solid #FF9900; margin-top: -1px; padding: 0 7px; }
+
+.hd-top .rt .ssn_home3:hover .location { display: block; }
+
+.hd-top .rt .ssn_home3 .location { overflow: hidden; display: none; }
+
+.hd-top .rt .ssn_home3 .location .province, .hd-top .rt .ssn_home3 .location .city { border: 1px dashed #ccc; margin-bottom: 5px; }
+
+.hd-top .rt .ssn_home3 .location ul { border: 1px solid #ccc; overflow: hidden; position: absolute; background-color: white; display: none; }
+
+.hd-top .rt .ssn_home3 .location ul li { float: left; width: 36px; height: 32px; }
+
 .hd-top .rt li:hover b { border-style: dashed dashed solid; border-color: transparent transparent #FF9900; top: -3px; }
 
 .hd-top .rt .border2, .hd-top .rt .border3 { position: absolute; border: 1px solid #FF9900; width: 72px; height: 32px; left: 4px; top: 0; border-bottom-color: #fff; display: none; }

@@ -2,9 +2,16 @@
 	详情页js
  */
 require(['config'], function() {
-	require(['jquery', 'headers', 'gdszoom', 'location', 'common', 'text!foot'], function($, gdszoom, foot, lct) {
+	require(['jquery', 'headers', 'gdszoom', 'location', 'cookie', 'common', 'text!foot'], function($, gdszoom, foot, lct,cookie) {
 		$('header').load('html/header.html #hd .hdtopbg', () => {
-			lct.getCityName($("#location")[0]);
+			if ($.cookie('location')) {
+					$("#location")[0].innerText = $.cookie('location');
+			} else {
+					lct.getCityName($("#location")[0]);
+			}
+			lct.getProvinceFromMysql();
+			lct.enterList($(".province"));
+			lct.enterList($(".city"));
 		});
 		$('.nav').load('html/header.html #hd .navbox');
 

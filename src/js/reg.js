@@ -2,9 +2,16 @@
 	登录注册页面JS
  */
 require(['config'],function(){
-	require(['jquery','text!head','headers','location','text!foot','common'],function($,head,foot,lct){
+	require(['jquery','text!head','headers','location', 'cookie','text!foot','common'],function($,head,foot,lct,cookie){
 			$('header').load('html/header.html #hd .hdtopbg',()=>{
-				lct.getCityName($("#location")[0]);
+				if ($.cookie('location')) {
+						$("#location")[0].innerText = $.cookie('location');
+				} else {
+						lct.getCityName($("#location")[0]);
+				}
+				lct.getProvinceFromMysql();
+				lct.enterList($(".province"));
+				lct.enterList($(".city"));
 			});
 
 			var phonenumber = $('#email');
