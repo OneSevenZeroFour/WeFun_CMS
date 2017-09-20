@@ -2,11 +2,11 @@
 	首页js
  */
 require(['config'],function(){
-	require(['jquery','text!head','headers','jacklunbo','text!foot','common'],function($,head,headers,jacklunbo,foot){
+	require(['jquery','text!head','headers','jacklunbo','text!foot','location','common'],function($,head,headers,jacklunbo,foot,lct){
 		$('header').html(head);
+		lct.getCityName($("#location")[0])
 
 
-		
 
 		//轮播图
 		$('.banner').JackCarousel({
@@ -18,7 +18,7 @@ require(['config'],function(){
 				buttons:false,
 				type:'horizontal'
 			})
-			
+
 		//special商品数据请求
 		var sgoodlist = $('.sgoodlist');
 		$.ajax({
@@ -59,7 +59,7 @@ require(['config'],function(){
 				sgoodlist.html(html);
 			}
 		})
-		
+
 		var hgoodslist = $('.hgoodslist')
 		//hotgoods商品数据请求
 		$.ajax({
@@ -112,7 +112,7 @@ require(['config'],function(){
 
 		$(window).on('scroll',function(){console.log(scrollTop);
 			var scrollTop = $(this).scrollTop();
-			
+
 			//吸顶菜单
 			if(scrollTop>=550){
 				$('.ui-fixed-top').show();
@@ -134,14 +134,14 @@ require(['config'],function(){
 		$('.navlist').hover(function(){
 			clearTimeout(this.timer);
 			$('.ui-category').show();
-		
-			
+
+
 
 		},function(){
 			this.timer = setTimeout(function(){
 				$('.ui-category').hide();
 			},500) ;
-			
+
 		})
 
 		//li hover
@@ -155,7 +155,7 @@ require(['config'],function(){
 
 				$(this).find('.ui-category-third').show();
 				$(this).siblings().find('.ui-category-third').hide();
-		
+
 			})
 
 		});
@@ -194,19 +194,19 @@ require(['config'],function(){
 					listqtys +=item.qty;
 					total += item.qty*item.price;
 					return `
-						<ul>                                                            
-                                       <li class="clearfix">    
-                                        <div class="mcart-p-box clearfix">  
+						<ul>
+                                       <li class="clearfix">
+                                        <div class="mcart-p-box clearfix">
                                             <div class="mcart-p-img"><a href="3"  class="stats" ><img src="${item.imgurl}" ></a></div>
                                             <div class="mcart-p-name"><a href="#"  class="stats" >${item.title}</a></div>
-                                            <div class="mcart-p-detail">          
+                                            <div class="mcart-p-detail">
                                                 <span class="mcart-p-price"><strong>￥${item.price}</strong>×${item.qty}</span><br>
                                                 <a class="delete" href="javascript:;" target="_self" id="deleteItem_35363878_154623_1"></a>
-                                            </div> 
-                                        </div>  
+                                            </div>
+                                        </div>
                                     </li>
-                                                  
-                                </ul>             
+
+                                </ul>
 					`
 			}).join('');
 			$('.smc').html(html);
@@ -215,7 +215,7 @@ require(['config'],function(){
 			$('#cartSlideNum').text('（'+listqtys+'）');
 			$('.totals').text(total);
 		}
-		
+
 		//购物车
 		$('.cart').hover(function(){
 			$('.shopping').show();
@@ -224,22 +224,3 @@ require(['config'],function(){
 		})
 	})
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -11,7 +11,7 @@ require.config({
 		jacklunbo:'../lib/new.carousel/new.carousel',
 		foot:'../html/footer.html',
 		common:'../lib/common',
-		headers:'./headers'
+		headers:'./headers',
 	},
 	shim:{
 		// gdszoom依赖jquery
