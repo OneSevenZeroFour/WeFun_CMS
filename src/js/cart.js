@@ -2,9 +2,10 @@
 	购物车js
  */
 require(['config'],function(){
-	require(['jquery','headers','common','text!foot'],function($,foot){
-		$('header').load('html/header.html #hd .hdtopbg');
-
+	require(['jquery','headers','location','common','text!foot'],function($,foot,lct){
+		$('header').load('html/header.html #hd .hdtopbg',()=>{
+			lct.getCityName($("#location")[0]);
+		});
 		//先获取cookie看是否为空
 		var arr_goodlist = [];
 		var cookies = Cookie.get('cartlist');
@@ -15,9 +16,9 @@ require(['config'],function(){
 		if(cookies.length>0){
 			 arr_goodlist= JSON.parse(cookies);
 		}
-		
+
 		//判断length
-		
+
 		var cart3_area_box = $('.cart3_area_box');
 
 		//局部刷新事件驱动
@@ -33,7 +34,7 @@ require(['config'],function(){
 	                    <p class="emptyText">您的购物车还是空的</p>
 	                    <p class="btn"><a href="#" target="_self">去逛逛</a></p>
 	                </dd>
-	                <dd class="clear"></dd>                 
+	                <dd class="clear"></dd>
 	            </dl>
 				`
 				emptyCart.html(html);
@@ -41,14 +42,14 @@ require(['config'],function(){
 				cart3_area_box.append(emptyCart);
 			}else{
 				//cookie不为空则将数据生成html
-				
+
 				var cart3_area = $('<div/>').addClass('cart3_area');
 				var html1 = `
 					<div class='cart3_tit'>
 						<div class="cart3_tit_l">
 	                            <input type="checkbox" class="cart3_checkbox fl" >
-	                            <span class="inblock"><a class="fl label" href="/">母婴之家商城</a> </span>   
-	                             <span class="inblock"><span class="ct-t " id="cartDesc_1">母婴之家商城购物车</span></span>                     
+	                            <span class="inblock"><a class="fl label" href="/">母婴之家商城</a> </span>
+	                             <span class="inblock"><span class="ct-t " id="cartDesc_1">母婴之家商城购物车</span></span>
 	                            <div class="clear"></div>
 	                    </div>
 	                    <span class="price">单价（元）</span>
@@ -79,9 +80,9 @@ require(['config'],function(){
 	                        <span class="inblock coupon-form">
 	                            <input type="text" data-a="1======1" class="inblock" id="userCouponValue" value="请输入优惠码">
 	                            <a class="use" id="userCoupon" data-info="">使用</a>
-	                            
+
 	                        </span>
-	                        <span class="inblock yh">已优惠：</span>                
+	                        <span class="inblock yh">已优惠：</span>
 	                        <span class="inblock yhtot">￥0.00</span>
 	                </div>
 				`;
@@ -89,7 +90,7 @@ require(['config'],function(){
 				cart3_area_box.append(coupon_area);
 
 				var cast = $('<div/>').addClass('cast').html(`
-						<div id="cart3_bott_box">         
+						<div id="cart3_bott_box">
 						<div id="cart3_bott" class="">
 	        				<div class="cart3_bott">
 				            <div class="tipsOrder hide" id="tipsOrder">
@@ -103,7 +104,7 @@ require(['config'],function(){
 				            </div>
 				            <div class="a-m">
 				                <span class="inblock submit">
-				                                
+
 				                    <a href="javascript:;" id="submitOrder" class="submit_b" data-cart="0">确认订单</a>
 				                    <a href="javascript:;" class="submit_b_disabled" id="submitOrderDisabled">确认订单</a>
 				                </span>
@@ -132,9 +133,9 @@ require(['config'],function(){
 								<ins>￥${item.price}</ins><br/>
 								<ins class="del grey">￥${Number(item.price)+80}.00</ins>
 							</span>
-							<span class="num inblock adre" > 
+							<span class="num inblock adre" >
 		                        <a class="minus" > <span></span> </a>
-		                        <input type="text" maxlength="3" value="${item.qty}" > 
+		                        <input type="text" maxlength="3" value="${item.qty}" >
 		                        <a rel="add" class="add" > <span></span><em></em> </a>
 		                    </span>
 		                    <span class="inblock count"> <strong>￥${item.qty*item.price}</strong> </span>
@@ -147,7 +148,7 @@ require(['config'],function(){
 					<li class="event_info">
 		                <span class="tit inblock"> <a class="more_link"> <span class="inblock">2017季末大清仓：2017季末大清仓<em class="koujian"></em>  </span></a></span>
 		                <span class="price inblock"> <ins><em class="inblock"></em></ins> </span>
-						<span class="num inblock">已参与</span>                                
+						<span class="num inblock">已参与</span>
 		                <em class="line"></em>
 		                <em class="ball"></em>
 		                <span class="arr arr2"></span>
@@ -155,7 +156,7 @@ require(['config'],function(){
 		            </li>
 				`;
 				$('.totle_price').text(totle_price);
-				
+
 				$('#totCash').text(totle_price+'.00');
 
 				cart3_list.html(html2);
@@ -163,9 +164,9 @@ require(['config'],function(){
 				$('#BuyTotalCount').text(allqty);
 				var qtylist = 1;
 				//点击按钮修改cookie
-				$('.adre').on('click','.minus',function(){				
+				$('.adre').on('click','.minus',function(){
 					qtylist--;
-					
+
 
 					//找到当前li商品数据
 					var currentid = $(this).closest('li').attr('data-guid');
@@ -173,16 +174,16 @@ require(['config'],function(){
 					var Totalprice=0;
 					var Allqty =0;
 					for(var i=0; i<arr_goodlist.length; i++){
-						
+
 						if(arr_goodlist[i].guid===currentid){
 							arr_goodlist[i].qty--;
-							
+
 							if(arr_goodlist[i].qty<=0){
 								arr_goodlist[i].qty=1;
 							}
 							currenttotal.text('￥'+(arr_goodlist[i].qty*arr_goodlist[i].price));
 							$(this).next().val(arr_goodlist[i].qty);
-							
+
 							//更新cookie
 							var now = new Date();
 							now.setDate(now.getDate()+8);
@@ -344,7 +345,7 @@ require(['config'],function(){
 						this.className = 'hover';
 						$(this).siblings().removeClass('hover');
 					});
-						
+
 					$('.addcart').on('click',function(){
 						//获取cookie
 						var arr_goodlist = [];
@@ -376,9 +377,9 @@ require(['config'],function(){
 							//数据存入cookie
 							var goods = {
 				                    guid:guid,
-				                    imgurl:imgurl,       
-				                    title:title,       
-				                    price:price,       
+				                    imgurl:imgurl,
+				                    title:title,
+				                    price:price,
 				                    qty:1
 				            }
 				            arr_goodlist.unshift(goods);
@@ -388,9 +389,9 @@ require(['config'],function(){
 
 	         			location.reload();
 					})
-					
+
 					//点击左右上下页
-					
+
 				}
 
 			});

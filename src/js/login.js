@@ -2,13 +2,15 @@
 	注册页面js
 */
 require(['config'],function(){
-	require(['jquery','headers','common'],function($){
-		$('header').load('html/header.html #hd .hdtopbg');
+	require(['jquery','location','headers','common'],function($,lct){
+		$('header').load('html/header.html #hd .hdtopbg',()=>{
+			lct.getCityName($("#location")[0]);
+		});
 		$('footer').load('html/footer.html #footer .tfc_footer');
 
 		var phonenumber = $('#email');
 		var password1 = $('#password1');
-		
+
 		var message = $('#message');
 		var message2 = $('#message2');
 
@@ -19,9 +21,9 @@ require(['config'],function(){
 			var _phonenumber = phonenumber.val();
 			//先判断输入的是否为电话号码正确的格式
 			 var reg = /\b1[3578]\d{9}\b/g;
-		
+
 			if(!reg.test(_phonenumber)){
-			 	
+
 			 	$('#emailTip').addClass('onError').html(
 			 		`
 			 		<p class='noticeWrap noticeWrap-err'>
@@ -32,7 +34,7 @@ require(['config'],function(){
 			 	//regin = false;
 			 	return false;
 			}
-			
+
 			 //发起ajax请求查询号码是否被注册
 			$.ajax({
 			 	url:'api/reg.php',
@@ -47,7 +49,7 @@ require(['config'],function(){
 					 			<span class='txt-succ'>用户名正确</span>
 					 		</p>
 					 		`);
-			 			
+
 					}
 					else{
 						$('#emailTip').addClass('onError').html(
@@ -125,7 +127,7 @@ require(['config'],function(){
 		vcode.on('click',function(){
 			//生成验证码
 			vCode();
-			
+
 		}).on('input',function(){
 			vCode();
 		});
@@ -201,7 +203,7 @@ require(['config'],function(){
 					 		`
 					)
 					return false;
-				
+
 				}else if(message.val()===''){
 						$('#messageTip').addClass('onError').html(
 							`
@@ -227,15 +229,15 @@ require(['config'],function(){
 
 					//储存一个cookie存储账户
 					// Cookie.set('user','phonenumber='+phonenumber.val());
-					  document.cookie = 'user=' + JSON.stringify({'username':phonenumber.val(),'password':password1.val()}) +'; path=/'; 
+					  document.cookie = 'user=' + JSON.stringify({'username':phonenumber.val(),'password':password1.val()}) +'; path=/';
 				}
-					
+
 		})
 
 		//忘记密码
 		$('#forget').on('click',function(){
 			//获取账号
-			
+
 		})
 	})
 })

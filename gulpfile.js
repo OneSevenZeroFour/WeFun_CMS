@@ -18,7 +18,7 @@ gulp.task('compileSass',function(){
 			.pipe(sass({outputStyle:'compact'}).on('error', sass.logError))
 
 			// 输出文件
-			.pipe(gulp.dest('./src/css'))
+			.pipe(gulp.dest('./src/css'));
 
 	},500);
 });

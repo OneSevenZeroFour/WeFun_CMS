@@ -12,12 +12,16 @@ require.config({
 		foot:'../html/footer.html',
 		common:'../lib/common',
 		headers:'./headers',
+		'cookie':'../lib/plugin/js.cookie'
 	},
 	shim:{
 		// gdszoom依赖jquery
 		headers:['jquery'],
 		gdszoom:['jquery'],
 		jacklunbo:['jquery'],
+		cookie:{
+			exports:'cookie'
+		}
 	// 	lunbo:['jquery'],
 	// 	lunbo02:['jquery']
 	}
