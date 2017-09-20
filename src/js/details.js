@@ -224,10 +224,38 @@ require(['config'],function(){
 			},function(){
 				$('#shoppingCarcontainer').hide();
 			});
-
-			
-				
-			
-
+			console.log(333);
+			//商品详细介绍页面
+			$('.maijia').on('click',function(){
+				// console.log(222)
+				console.log(2323)
+				var p=window.location.search.slice(1).split('&');
+				var xianid;
+				p.forEach(function(item){
+					var arr=item.split('=');
+					if(arr[0]='id'){
+						xianid=arr[1];
+					}
+				})
+				console.log(xianid)
+				window.location.href="../src/ueditor-1.4.3.3/_examples/completeDemo.html?id="+xianid;
+			})
+			var p=window.location.search.slice(1).split('&');
+				var xianid;
+				p.forEach(function(item){
+					var arr=item.split('=');
+					if(arr[0]='id'){
+						xianid=arr[1];
+					}
+				})
+			$.ajax({
+					url: 'http://localhost:1111/jia',
+					type: 'post',
+					data: {id:xianid},
+					success:function(data){
+						console.log(data);
+						// $('.picshow').html(data)
+					}
+				})
 	})
 })
