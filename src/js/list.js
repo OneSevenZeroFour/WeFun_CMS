@@ -2,18 +2,26 @@
 	列表页JS
  */
 require(['config'],function(){
-	require(['jquery','text!head','text!foot','common'],function($,head,foot){
+	require(['jquery','text!head','text!foot','location', 'cookie','common'],function($,head,foot,lct,cookie){
 		$('header').html(head);
+		if ($.cookie('location')) {
+				$("#location")[0].innerText = $.cookie('location');
+		} else {
+				lct.getCityName($("#location")[0]);
+		}
+		lct.getProvinceFromMysql();
+		lct.enterList($(".province"));
+		lct.enterList($(".city"));
 
 		require(['headers'],function(){
-			
+
 		//加载数据
 		var pageNo = 1;
 		var qty = 12;
 		var pageLast;
 		var length;
 		var goodslist = $('.goodsList');
-		
+
 		function creatgoods(){
 			$.ajax({
 				url:'./api/list.php',
@@ -21,12 +29,12 @@ require(['config'],function(){
 
 				// 设定返回数据类型
 				dataType:'json',
-				
+
 				success:function(res){//console.log(pageNo);
 					length = Math.ceil(res.total/qty);
 					//利用数据生成html
 					var ul = $('<ul/>');
-					
+
 					var html = res.data.map(function(item){
 						return `
 							<li data-guid='${item.id}'>
@@ -48,7 +56,7 @@ require(['config'],function(){
 											<em>${item.price}</em>
 										</span>
 										<span class='buyBtn'><a href=""></a></span>
-										
+
 									</div>
 								</div>
 							</li>
@@ -67,14 +75,14 @@ require(['config'],function(){
 
 		//实现懒加载
 		$(window).on('scroll',function(){
-			
+
 			var scrollTop = $(this).scrollTop();
-			
+
 			if(pageNo>length){
 				return
 			}
-			
-			
+
+
 			// console.log(scrollTop,document.documentElement.scrollHeight-window.innerHeight)
 			if(scrollTop==document.documentElement.scrollHeight-window.innerHeight&& pageNo!=pageLast){
 
@@ -82,7 +90,7 @@ require(['config'],function(){
 
 				pageLast = pageNo;
 			}
-		}) 
+		})
 
 		$('footer').html(foot);
 
@@ -117,22 +125,22 @@ require(['config'],function(){
 				//数据存入cookie
 				var history = {
 	                    guid:guid,
-	                    imgurl:imgurl,       
-	                    title:title,       
-	                    price:price,       
+	                    imgurl:imgurl,
+	                    title:title,
+	                    price:price,
 	                    qty:1
 	            }
 	            arr_historys.unshift(history);
 			}
-			
-         
+
+
          console.log(arr_historys);
-         document.cookie = 'history=' + JSON.stringify(arr_historys) +'; path=/'; 
+         document.cookie = 'history=' + JSON.stringify(arr_historys) +'; path=/';
 		})
 		})
 
-		
-	
+
+
 
 	})
 })

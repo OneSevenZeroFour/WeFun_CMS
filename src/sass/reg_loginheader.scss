@@ -8,7 +8,7 @@
 		background: url(http://static.boodoll.cn/mall/v16//images/index/top-navbg.png) repeat-x;
 }
 .hd-top{
-		
+
 	    height: 42px;
 	    z-index: 100;
 	    position: relative;
@@ -95,7 +95,38 @@
 		    z-index: 110;
 		    margin-top: 6px;
 		    display:block;
-			
+				.ssn_home3 {
+					&:hover{
+						background-color:white;
+								border: 1px solid #FF9900;
+								margin-top: -1px;
+								padding: 0 7px;
+								.location{
+									display:block;
+								}
+					}
+						.location {
+								overflow: hidden;
+								display:none;
+								.province,.city{
+				border:1px dashed #ccc;
+				margin-bottom: 5px;
+								}
+								ul {
+									border:1px solid #ccc;
+										overflow: hidden;
+										position:absolute;
+												background-color:white;
+												display:none;
+										li {
+												float: left;
+												width: 36px;
+												height: 32px;
+										}
+								}
+						}
+				}
+
 			li:hover b{
 				border-style:dashed dashed solid;
 				border-color:transparent transparent #FF9900;

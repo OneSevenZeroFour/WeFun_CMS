@@ -2,8 +2,17 @@
 	登录注册页面JS
  */
 require(['config'],function(){
-	require(['jquery','text!head','headers','text!foot','common'],function($,head,foot){
-			$('header').load('html/header.html #hd .hdtopbg');
+	require(['jquery','text!head','headers','location', 'cookie','text!foot','common'],function($,head,foot,lct,cookie){
+			$('header').load('html/header.html #hd .hdtopbg',()=>{
+				if ($.cookie('location')) {
+						$("#location")[0].innerText = $.cookie('location');
+				} else {
+						lct.getCityName($("#location")[0]);
+				}
+				lct.getProvinceFromMysql();
+				lct.enterList($(".province"));
+				lct.enterList($(".city"));
+			});
 
 			var phonenumber = $('#email');
 			var password1 = $('#password1');
@@ -20,9 +29,9 @@ require(['config'],function(){
 				var _phonenumber = phonenumber.val();
 				//先判断输入的是否为电话号码正确的格式
 				 var reg = /\b1[3578]\d{9}\b/g;
-			
+
 				if(!reg.test(_phonenumber)){
-				 	
+
 				 	$('#emailTip').addClass('onError').html(
 				 		`
 				 		<p class='noticeWrap noticeWrap-err'>
@@ -33,7 +42,7 @@ require(['config'],function(){
 				 	//regin = false;
 				 	return false;
 				}
-				
+
 				 //发起ajax请求查询号码是否被注册
 				$.ajax({
 				 	url:'api/reg.php',
@@ -110,7 +119,7 @@ require(['config'],function(){
 					 			<b class='ico-warning'></b>
 					 			<span class='txt-err'>重复密码不能为空！</span>
 					 		</p>
-					 		`	
+					 		`
 						)
 						return false;
 					}
@@ -149,7 +158,7 @@ require(['config'],function(){
 			vcode.on('click',function(){
 				//生成验证码
 				vCode();
-				
+
 			}).on('input',function(){
 				vCode();
 			})
@@ -266,13 +275,13 @@ require(['config'],function(){
 						}
 					})
 
-					
+
 
 				}
-				
-				
+
+
 			})
 			$('footer').load('html/footer.html #footer .tfc_footer');
-			
+
 	})
 })

@@ -47,6 +47,18 @@ dl, dt, dd { margin: 0; padding: 0; }
 
 #hd .hd-top .rt li b { cursor: pointer; -webkit-transition: all .2s ease; transition: all .2s ease; width: 0; line-height: 0; height: 0; font-size: 0; border-width: 4px; border-style: solid dashed dashed; border-color: #666666 transparent transparent; position: relative; left: 0; overflow: hidden; display: inline-block; zoom: 1; }
 
+#hd .hd-top .rt .ssn_home3:hover { background-color: white; border: 1px solid #FF9900; margin-top: -1px; padding: 0 7px; }
+
+#hd .hd-top .rt .ssn_home3:hover .location { display: block; }
+
+#hd .hd-top .rt .ssn_home3 .location { overflow: hidden; display: none; }
+
+#hd .hd-top .rt .ssn_home3 .location .province, #hd .hd-top .rt .ssn_home3 .location .city { border: 1px dashed #ccc; margin-bottom: 5px; }
+
+#hd .hd-top .rt .ssn_home3 .location ul { border: 1px solid #ccc; overflow: hidden; position: absolute; background-color: white; display: none; }
+
+#hd .hd-top .rt .ssn_home3 .location ul li { float: left; width: 36px; height: 32px; }
+
 #hd .hd-top .rt .resut { height: 28px; line-height: 32px !important; text-align: center; z-index: 120; width: 66px; position: relative; overflow: hidden; }
 
 #hd .hd-top .rt .Theader_down01, #hd .hd-top .rt .Theader_down02 { background-color: #ffffff; position: absolute; border: 1px solid #FF9900; text-align: left; padding: 0px 5px 3px 4px; width: 63px; top: 33px; left: 4px; line-height: 21px; display: none; z-index: 20; border-top-color: #fff; }
