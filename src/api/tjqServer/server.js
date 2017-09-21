@@ -1,17 +1,14 @@
+var getLocationMysql = require("./locationServer.js");
+
 var express = require("express");
+var bodyParser = require('body-parser')
 
 var app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: false
+}));
+
 app.listen(8888);
 
-app.post('/province',(req,res)=>{
-  res.append("Access-Control-Allow-Origin", "*")
-  console.log(req);
-  //发送省的数据库
-  res.send('[1]')
-})
-app.post('/city',(req,res)=>{
-  res.append("Access-Control-Allow-Origin", "*")
-  console.log(req);
-  // 根据获得的数据返回相应的城市
-  res.send('[1]')
-})
+getLocationMysql.getLocationMysql(app);
