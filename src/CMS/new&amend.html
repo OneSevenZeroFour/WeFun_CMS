@@ -255,6 +255,7 @@
               async: true,
               success:function(data){
                 var list = JSON.parse(data);
+                console.log(list.results[0])
                 var url = list.results[0].imgurl;
                 var $div = $('<div style="position:relative;float:left;"/>');
                 var $span = $('<span style="padding:0 5px;border:1px solid #ccc;position:absolute;top:10px;right:10px;background:#58bc58;color:white;cursor:pointer;line-height:23px;opacity:0.6;">&times;</span>');

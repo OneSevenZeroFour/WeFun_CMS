@@ -104,9 +104,9 @@
           <div class="am-btn-toolbar">
             <div class="am-btn-group am-btn-group-xs">
               <button type="button" onclick="add()" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
+              <button type="button" class="am-btn am-btn-default">保存</button>
+              <button type="button" class="am-btn am-btn-default">审核</button>
+              <button type="button" class="am-btn am-btn-default delete-m">删除</button>
             </div>
           </div>
         </div>
@@ -123,7 +123,7 @@
           <div class="am-input-group am-input-group-sm">
             <input type="text" class="am-form-field">
           <span class="am-input-group-btn">
-            <button class="am-btn am-btn-default" type="button">搜索</button>
+            <button class="am-btn am-btn-default seek" type="button">搜索</button>
           </span>
           </div>
         </div>
@@ -134,7 +134,7 @@
             <table class="am-table am-table-striped am-table-hover table-main">
               <thead>
               <tr>
-                <th class="table-check"><input type="checkbox" /></th><th class="table-id">ID</th><th class="table-title">图片</th><th class="table-title">标题</th><th class="table-type">描述</th><th class="table-author am-hide-sm-only">价格</th><th class="table-date am-hide-sm-only">修改日期</th><th class="table-set" style="text-align:left;padding-left:26px;">操作</th>
+                <th class="table-check"><input type="checkbox" class="checkedAll" /></th><th class="table-id">ID</th><th class="table-title">图片</th><th class="table-title">标题</th><th class="table-type">描述</th><th class="table-author am-hide-sm-only">价格</th><th class="table-date am-hide-sm-only">修改日期</th><th class="table-set" style="text-align:left;padding-left:26px;">操作</th>
               </tr>
               </thead>
               <tbody id="list">
@@ -197,11 +197,12 @@
     type:"POST",
     url:"http://localhost:12345/selectAll",
     success:function(data){
-      var list = JSON.parse(data);
-      $('.am-cf-sp').text(list.results.length);
+      var list = JSON.parse(data).results[0];
+      $('.am-cf-sp').text(list['COUNT(*)']);
     }
   })
   var pageNo=1;
+  // 分页页码切换
   $('.am-pagination').on('click','li',function(){
     pageNo = $(this).find('a').text();
     console.log(pageNo)
@@ -216,14 +217,14 @@
         pageNo:pageNo,
         page:(pageNo-1)*15
       },
+      async: true,
       success:function(data){
         var list = JSON.parse(data);
         var html = list.results.map(function(item){
-          console.log(item)
+          // console.log(item)
           var time = item.addtime;
           time=time.toString().replace(/T/," ");
           time = time.replace(/.000Z/,"");
-          console.log(list.results.length)
           return `
             <tr data-guid="${item.id}">
                   <td><input type="checkbox" /></td>
@@ -236,8 +237,8 @@
                   <td>
                     <div class="am-btn-toolbar">
                       <div class="am-btn-group am-btn-group-xs">
-                        <button class="Lmamend am-btn am-btn-default am-btn-xs am-text-secondary" style="width:60px;"><span class="am-icon-pencil-square-o"></span> 编辑</button>
-                        <button class="Lmbtn am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" style="width:60px;"><span class="am-icon-trash-o"></span> 删除</button>
+                        <button class="Lmamend am-btn am-btn-default am-btn-xs am-text-secondary edit" style="width:60px;"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                        <button class="Lmbtn am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete-mmm" style="width:60px;"><span class="am-icon-trash-o"></span> 删除</button>
                       </div>
                     </div>
                   </td>
@@ -245,27 +246,81 @@
           `
         }).join("")
         $("#list").html(html);
-        // 删除
-        $('.Lmbtn').on('click',function(){console.log($('.Lmbtn').closest('tr').data('guid'))
+        // 点击tr勾选该商品
+        $('tr').on('click',function(){
+          var $check1 = $('tbody').find(':checkbox');
+          var $tr = $('tbody tr').filter('.selected');
+          var $check = $(this).find(':checkbox');
+          if($(this).hasClass('selected')){
+            $check.prop('checked',false);
+            $(this).removeClass('selected');
+          }else{
+            $check.prop('checked',true);
+            $(this).addClass('selected');
+          }
+          // 取消/选中全勾选
+          if(! $(this).hasClass('selected')){
+            $('.checkedAll').prop('checked',false).removeClass('selectedAll');
+          }else if($check1.length===($tr.length + 1)){
+            $('.checkedAll').prop('checked',true).addClass('selectedAll');
+          }
+
+        })
+        // 全勾选商品
+        $('.checkedAll').on('click',function(){
+          var $check1 = $('tbody').find(':checkbox');
+          console.log(typeof $check1)
+          if($(this).hasClass('selectedAll')){
+            $(this).prop('checked',false).removeClass('selectedAll');
+            $check1.prop('checked',this.checked);
+            $check1.parents('tr').removeClass('selected');
+          }else{
+            $(this).prop('checked',true).addClass('selectedAll');
+            $check1.prop('checked',this.checked);
+            $check1.parents('tr').addClass('selected');
+          }
+        })
+        
+        // 表头删除
+        $('.delete-m').on('click',function(){
+          var $tr = $('tbody tr').filter('.selected');
+          console.log($tr)
+          $tr.remove();
           $.ajax({
             type:'POST',
             url:'http://localhost:12345/delete',
             data:{
-              id:$('.Lmbtn').closest('tr').data('guid')
+              id:$tr.data('guid')
             },
-            async: true,
+            async:true,
             success:function(data){
             }
           });
-          $(this).closest('tr').remove();
+        })
+        // tr中的删除
+        $('tr').on('click','.delete-mmm',function(){
+          // location.reload();
+          $.ajax({
+            type:'POST',
+            url:'http://localhost:12345/delete',
+            data:{
+              id:$(this).parents('tr').data('guid')
+            },
+            async:false,
+            success:function(data){
+              console.log(data)
+            }
+          });
+          $(this).parents('tr').remove();
+          console.log($(this).parents('tr')[0])
         })
         // 修改
-        $('.Lmamend').on('click',function(){console.log(222)
+        $('.edit').on('click',function(){console.log(222)
           window.location.href = "new&amend.html?id="+$(this).parents('tr').data('guid');
         })
         // 查询
-        $('.am-btn').on('click',function(){
-          var sname = $('select').val();console.log(sname)
+        $('.seek').on('click',function(){
+          var sname = $('select').val();
           $.ajax({
             type:'POST',
             url:'http://localhost:12345/inquire',
@@ -276,14 +331,13 @@
             async: true,
             success:function(data){
               var list = JSON.parse(data);
-              console.log(list)
               $('tr').remove();
               var html = list.results.map(function(item){
-                console.log(item)
+                // console.log(item)
                 var time = item.addtime;
                 time=time.toString().replace(/T/," ");
                 time = time.replace(/.000Z/,"");
-                console.log(list.results.length)
+                // console.log(list.results.length)
                 return `
                   <tr data-guid="${item.id}">
                         <td><input type="checkbox" /></td>
@@ -305,8 +359,9 @@
                 `
               }).join("")
               $("#list").html(html);
+              $('.am-cf-sp').text(list.results.length);
             }
-          });
+          })
         })
       }
     })

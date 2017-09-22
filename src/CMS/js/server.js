@@ -2,7 +2,7 @@
 * @Author: Marte
 * @Date:   2017-09-13 18:59:00
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-21 21:03:07
+* @Last Modified time: 2017-09-22 19:24:01
 */
 var http = require("http");
 var url = require('url');
@@ -33,6 +33,7 @@ http.createServer(function(request,response){
 		// 解决跨越
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		switch(pathname){
+			// 分页
 			case "/select":
 				connection.query(`select * from listgoods order by id limit ${posts.page},15`,function(error,results,fields){
 					if(error) throw error;
@@ -43,7 +44,7 @@ http.createServer(function(request,response){
 					}))
 				});
 				break;
-				break;
+			// 模糊搜索
 			case "/inquire":
 				connection.query(`SELECT * FROM listgoods WHERE ${posts.sname} like '%${posts.connect}%'`,function(error,results,fields){
 					if(error) throw error;
@@ -54,9 +55,9 @@ http.createServer(function(request,response){
 					}))
 				});
 				break;
-				break;
+			// 搜索ID
 			case "/select1":
-				connection.query(`select * from listgoods where id = "${posts.id}"`,function(error,results,fields){
+				connection.query(`select * from listgoods where id = ${posts.id}`,function(error,results,fields){
 					if(error) throw error;
 					console.log('the solution is:',results);
 					response.end(JSON.stringify({
@@ -65,9 +66,9 @@ http.createServer(function(request,response){
 					}))
 				});
 				break;
-				break;
+			// 搜索所有信息
 			case "/selectAll":
-				connection.query('select * from listgoods',function(error,results,fields){
+				connection.query('select COUNT(*) from listgoods',function(error,results,fields){
 					if(error) throw error;
 					console.log('the solution is:',results);
 					response.end(JSON.stringify({
@@ -76,6 +77,7 @@ http.createServer(function(request,response){
 					}))
 				});
 				break;
+			// 添加商品信息
 			case '/insert':
 				connection.query(`insert into listgoods(imgurl,title,description,price) values("${posts.imgurl}","${posts.title}","${posts.description}","${posts.price}")`,function(error,results,fields){
 						if(error) throw error;
@@ -86,6 +88,7 @@ http.createServer(function(request,response){
 						}))
 					});
 				break;
+			// 删除商品信息
 			case '/delete':
 				connection.query(`DELETE FROM listgoods where id = "${posts.id}"`,function(error,results,fields){
 					if(error) throw error;console.log(posts.id)
@@ -96,6 +99,7 @@ http.createServer(function(request,response){
 					}))
 				});
 				break;
+			// 修改商品信息
 			case '/amend':
 				connection.query(`update listgoods set imgurl="${posts.imgurl}",title="${posts.title}",description="${posts.description}",price="${posts.price}" where id=${posts.id}`,function(error,results,fields){
 					if(error) throw error;
@@ -105,6 +109,17 @@ http.createServer(function(request,response){
 						results
 					}))
 					console.log(posts)
+				});
+				break;
+			// 查询登录账号和密码
+			case "/login":
+				connection.query(`select * from user where phonenumber = "${posts.phonenumber}" and password = "${posts.password}"`,function(error,results,fields){
+					if(error) throw error;
+					console.log('the solution is:',results);
+					response.end(JSON.stringify({
+						status:1,
+						results
+					}))
 				});
 				break;
 		}
