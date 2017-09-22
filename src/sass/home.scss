@@ -545,9 +545,23 @@ header{
 	.ok:hover{background-color:#ff5c00;}
 	.ok:hover a.main{color:#fff;#cartSlideNum{color:#fff;}}
 	.ok{
-			height:150px;
-			display:block;
-			.level-dt{margin-top:30px;} 
+			// height:130px;
+			// display:block;
+			// vertical-align:middle;
+			.level-dt{margin-top:-75px;} 
+			height: 96px;
+		    display: flex;
+		    /* vertical-align: bottom; */
+		    justify-content: center;
+		    flex-direction: column;
+		    padding: 30px 0px 20px 0;
+		    margin-bottom: 3px;
+	}
+	.kefu{
+		background-color: #ff5c00;
+		span{
+			color:#fff !important;
+			}
 	}
 	#cartSlideNum{color:#ff5c00;}
 	.user{
@@ -836,6 +850,250 @@ header{
     text-align: center;
     font-weight: 700;
     line-height: 30px;
+}
+
+
+.talk_window{
+	display:none;
+	margin: 0px;
+    padding: 0px;
+
+    float: none;
+    width: 415px;
+    height: 520px;
+    max-width: none;
+    max-height: none;
+    clear: none;
+    position: fixed;
+    
+    
+    right: 0;
+    bottom: 0;
+    text-align: left;
+    color: rgb(0, 0, 0);
+    //background-color: transparent;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: 12px;
+    line-height: 160%;
+    font-family: Arial, "Microsoft YaHei";
+    box-sizing: content-box;
+    overflow: hidden;
+    z-index: 1000000;
+	border:1px solid #ddd;
+	border-radius:10px;
+	.chat_header{
+		width: 415px;
+    	height: 42px;
+    	background-color:rgb(255, 133, 0);
+    	text-align:center;
+    	color:#fff;
+    	line-height:42px;
+    	font-size:14px;
+    	span{float:left;margin-left:5px;}
+    	.closewindow{
+			margin:11px 5px 0 0;
+    		float:right;
+    		cursor: pointer;
+    		width: 20px;
+    		height: 20px;
+    		background:url(http://dl.ntalker.com/js/xn6/siteid/respack_nt6.90/images/chaticon.png) -60px 0px no-repeat;	
+    	}
+    	
+	}
+	.chat_view{
+
+		    margin: 0px;
+		    padding: 0px;
+		    border: none;
+		    float: none;
+		    max-width: none;
+		    max-height: none;
+		    clear: none;
+		    left: auto;
+		    top: auto;
+		    right: auto;
+		    bottom: auto;
+		    text-align: left;
+		    box-sizing: content-box;
+		    color: rgb(0, 0, 0);
+		    background-color: #fff;
+		    font-style: normal;
+		    font-variant: normal;
+		    font-weight: normal;
+		    font-stretch: normal;
+		    font-size: 12px;
+		    line-height: 160%;
+		    font-family: Arial, "Microsoft YaHei";
+		    width: 100%;
+		    height: 300px;
+		    background-repeat: no-repeat;
+		    background-position: center bottom;
+		    position: relative;
+		    overflow: hidden;
+		    .logos{margin:30px 0 0 82px}
+		    ul{
+	    	    overflow-y: scroll;
+				height: 300px;
+		    }
+		    li{margin:20px 5px 0 0}
+		    li.self{
+		    	overflow:hidden;
+		    	margin:20px 5px 5px 0;
+		    	.jiao{
+		    		float:right;
+				    background: url(http://dl.ntalker.com/js/xn6/siteid/respack_nt6.90/images/chaticon.png) no-repeat -1px -63px;
+		    	}
+		    	.time{text-align:right;margin-right:17px;}
+		    	.content{
+		    		margin: 0;
+				    padding: 0;
+				    border: none;
+				    float: right;
+				    width: auto;
+				    height: auto;
+				    min-width: none;
+				    min-height: none;
+				    max-width: none;
+				    max-height: none;
+				    clear: none;
+				    position: static;
+				    left: auto;
+				    top: auto;
+				    right: auto;
+				    bottom: auto;
+				    text-align: left;
+				    box-sizing: content-box;
+				    color: #000;
+				    background-color: transparent;
+				    font: normal normal normal 12px/160% Arial,Microsoft YaHei;
+				    padding: 8px;
+				    background: #8CD0F3;
+				    border: 1px solid #d5d5d5;
+				    border-radius: 5px;
+				    -moz-border-radius: 5px;
+				    -webkit-border-radius: 5px;
+		    	}
+
+		    }
+		    .jiao{
+		    	display:inline-block;
+		    	margin: 10px 0px 0 -5px;
+			    padding: 0;
+			    border: none;
+			    float: none;
+			    width: auto;
+			    height: auto;
+			    min-width: none;
+			    min-height: none;
+			    max-width: none;
+			    max-height: none;
+			    clear: none;
+			    position: static;
+			    left: auto;
+			    top: auto;
+			    right: auto;
+			    bottom: auto;
+			    text-align: left;
+			    box-sizing: content-box;
+			    color: #000;
+			    background-color: transparent;
+			    font: normal normal normal 0px/0px Arial,Microsoft YaHei;
+			    position: relative;
+			    right: -4px;
+			    top: 0px;
+			    z-index: 1;
+			    width: 20px;
+			    height: 18px;
+			    background: url(http://dl.ntalker.com/js/xn6/siteid/respack_nt6.90/images/chaticon.png) no-repeat -20px -62px;
+		    }
+		    .content{
+		    	display:inline-block;
+		    	margin: 0;
+			    padding: 0;
+			    border: none;
+			    float: none;
+			    width: auto;
+			    height: auto;
+			    min-width: none;
+			    min-height: none;
+			    max-width: none;
+			    max-height: none;
+			    clear: none;
+			    position: static;
+			    left: auto;
+			    top: auto;
+			    right: auto;
+			    bottom: auto;
+			    text-align: left;
+			    box-sizing: content-box;
+			    color: #000;
+			    background-color: transparent;
+			    font: normal normal normal 12px/160% Arial,Microsoft YaHei;
+			    padding: 8px;
+			    background: #ffffff;
+			    border: 1px solid #d5d5d5;
+			    border-radius: 5px;
+			    -moz-border-radius: 5px;
+			    -webkit-border-radius: 5px;
+		    }
+		    .time{margin-left:22px;color:#b9b9c1;}
+	}
+	.write{
+		overflow:hidden;
+		background-color:#F9F9F9;
+		textarea{
+			loat: none;
+		    max-width: none;
+		    max-height: none;
+		    clear: none;
+		    position: static;
+		    left: auto;
+		    top: auto;
+		    right: auto;
+		    bottom: auto;
+		    text-align: left;
+		    box-sizing: content-box;
+		    background-color: #FFF;
+		    font-style: normal;
+		    font-variant: normal;
+		    font-weight: normal;
+		    font-stretch: normal;
+		    font-size: 12px;
+		    line-height: 160%;
+		    font-family: Arial, "Microsoft YaHei";
+		    box-shadow: rgb(170, 170, 170) 0px 0px 5px inset;
+		    margin: 1px;
+		    padding: 10px;
+		    width: 393px;
+		   height: 87px;
+		    outline: rgb(0, 136, 255) solid 0px;
+		    border: 0px solid rgb(0, 136, 255);
+		    color: rgb(0, 0, 0);
+		    resize: none;
+		    overflow-x: hidden;
+		    overflow-y: auto;
+		}
+		.sendMSG{
+			padding: 0 0 5px 0;
+			height:30px;
+			line-height:30px;
+			display:block;
+			overflow:hidden;
+			span{float:right;display:block;margin-right:20px;cursor:pointer}
+			.over:hover{color:rgb(0,95,234);}
+			.Send{
+				border:1px solid #ddd;
+				background-color:rgb(241, 241, 241);
+				width:75px;
+				height:28px;
+				text-align:center;
+			}
+			button{margin-left:20px;}
+		}
+	}
 }
 
 

@@ -27,7 +27,7 @@ require(['config'],function(){
 			// 设定返回数据类型
 			dataType:'json',
 
-			success:function(res){console.log(res);
+			success:function(res){//console.log(res);
 				var html = res.map(function(item){
 					return `
 						<div class='sitem wrap' data-guid='${item.id}'>
@@ -68,7 +68,7 @@ require(['config'],function(){
 			// 设定返回数据类型
 			dataType:'json',
 
-			success:function(res){console.log(res);
+			success:function(res){//console.log(res);
 				var html2 = res.map(function(item){
 					return `
 						<div class='sitem wrap' data-guid='${item.id}'>
@@ -110,7 +110,7 @@ require(['config'],function(){
 			$('.fixLeftAd').hide();
 		});
 
-		$(window).on('scroll',function(){console.log(scrollTop);
+		$(window).on('scroll',function(){//console.log(scrollTop);
 			var scrollTop = $(this).scrollTop();
 			
 			//吸顶菜单
@@ -129,7 +129,7 @@ require(['config'],function(){
 			}
 
 		});
-		console.log($('.navlist'));
+		// console.log($('.navlist'));
 		//菜单js
 		$('.navlist').hover(function(){
 			clearTimeout(this.timer);
@@ -175,7 +175,7 @@ require(['config'],function(){
 		if(cookies.length>0){
 			 arr_goodlist= JSON.parse(cookies);
 		}
-		console.log(arr_goodlist.length);
+		//console.log(arr_goodlist.length);
 
 		if(arr_goodlist.length===0){
 			$('.shopping').html(
@@ -221,7 +221,20 @@ require(['config'],function(){
 			$('.shopping').show();
 		},function(){
 			$('.shopping').hide ();
-		})
+		});
+
+		//客服
+		$('.kefu').click(function(){
+			$('.talk_window').show();
+		});
+		$('.closewindow').click(function(){
+			$('.talk_window').hide();
+		});	
+		$('.over').click(function(){
+			$('.talk_window').hide();
+		});	
+
+
 	})
 })
 

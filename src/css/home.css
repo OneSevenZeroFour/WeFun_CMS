@@ -121,7 +121,7 @@ dl, dt, dd { margin: 0; padding: 0; }
 
 #hd .hdbottom .rt .mallSearch .searchbox .search { margin-left: 2px; width: 420px; height: 34px; line-height: 34px; float: left; font-size: 12px; position: relative; border: 1px solid #ff5c00; }
 
-#hd .hdbottom .rt .mallSearch .searchbox .searchBtn { width: 66px; height: 38px; float: right; border: 1px solid #ff5c00; top: 0; left: 0; background: url(./img/newIndexIcon.png) 15px -78px no-repeat; background-color: #ff5c00; }
+#hd .hdbottom .rt .mallSearch .searchbox .searchBtn { margin: 0 !important; width: 66px; height: 38px; float: right; border: 1px solid #ff5c00; top: 0; left: 0; background: url(./img/newIndexIcon.png) 15px -78px no-repeat; background-color: #ff5c00; }
 
 #hd .hdbottom .rt .mallSearch .hot_key { height: 14px; }
 
@@ -509,9 +509,13 @@ header { background-color: #F5F4F6; }
 
 .slidebar .ok:hover a.main #cartSlideNum { color: #fff; }
 
-.slidebar .ok { height: 150px; display: block; }
+.slidebar .ok { height: 96px; display: flex; /* vertical-align: bottom; */ justify-content: center; flex-direction: column; padding: 30px 0px 20px 0; margin-bottom: 3px; }
 
-.slidebar .ok .level-dt { margin-top: 30px; }
+.slidebar .ok .level-dt { margin-top: -75px; }
+
+.slidebar .kefu { background-color: #ff5c00; }
+
+.slidebar .kefu span { color: #fff !important; }
 
 .slidebar #cartSlideNum { color: #ff5c00; }
 
@@ -600,3 +604,47 @@ header { background-color: #F5F4F6; }
 .shop_cart-btn { float: right; }
 
 .icon-btnSettlement { float: right; width: 103px; height: 37px; background-position: -190px -90px; display: inline-block; color: #FFF; text-align: center; font-weight: 700; line-height: 30px; }
+
+.talk_window { display: none; margin: 0px; padding: 0px; float: none; width: 415px; height: 520px; max-width: none; max-height: none; clear: none; position: fixed; right: 0; bottom: 0; text-align: left; color: black; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: 160%; font-family: Arial, "Microsoft YaHei"; box-sizing: content-box; overflow: hidden; z-index: 1000000; border: 1px solid #ddd; border-radius: 10px; }
+
+.talk_window .chat_header { width: 415px; height: 42px; background-color: #ff8500; text-align: center; color: #fff; line-height: 42px; font-size: 14px; }
+
+.talk_window .chat_header span { float: left; margin-left: 5px; }
+
+.talk_window .chat_header .closewindow { margin: 11px 5px 0 0; float: right; cursor: pointer; width: 20px; height: 20px; background: url(http://dl.ntalker.com/js/xn6/siteid/respack_nt6.90/images/chaticon.png) -60px 0px no-repeat; }
+
+.talk_window .chat_view { margin: 0px; padding: 0px; border: none; float: none; max-width: none; max-height: none; clear: none; left: auto; top: auto; right: auto; bottom: auto; text-align: left; box-sizing: content-box; color: black; background-color: #fff; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: 160%; font-family: Arial, "Microsoft YaHei"; width: 100%; height: 300px; background-repeat: no-repeat; background-position: center bottom; position: relative; overflow: hidden; }
+
+.talk_window .chat_view .logos { margin: 30px 0 0 82px; }
+
+.talk_window .chat_view ul { overflow-y: scroll; height: 300px; }
+
+.talk_window .chat_view li { margin: 20px 5px 0 0; }
+
+.talk_window .chat_view li.self { overflow: hidden; margin: 20px 5px 5px 0; }
+
+.talk_window .chat_view li.self .jiao { float: right; background: url(http://dl.ntalker.com/js/xn6/siteid/respack_nt6.90/images/chaticon.png) no-repeat -1px -63px; }
+
+.talk_window .chat_view li.self .time { text-align: right; margin-right: 17px; }
+
+.talk_window .chat_view li.self .content { margin: 0; padding: 0; border: none; float: right; width: auto; height: auto; min-width: none; min-height: none; max-width: none; max-height: none; clear: none; position: static; left: auto; top: auto; right: auto; bottom: auto; text-align: left; box-sizing: content-box; color: #000; background-color: transparent; font: normal normal normal 12px/160% Arial,Microsoft YaHei; padding: 8px; background: #8CD0F3; border: 1px solid #d5d5d5; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+
+.talk_window .chat_view .jiao { display: inline-block; margin: 10px 0px 0 -5px; padding: 0; border: none; float: none; width: auto; height: auto; min-width: none; min-height: none; max-width: none; max-height: none; clear: none; position: static; left: auto; top: auto; right: auto; bottom: auto; text-align: left; box-sizing: content-box; color: #000; background-color: transparent; font: normal normal normal 0px/0px Arial,Microsoft YaHei; position: relative; right: -4px; top: 0px; z-index: 1; width: 20px; height: 18px; background: url(http://dl.ntalker.com/js/xn6/siteid/respack_nt6.90/images/chaticon.png) no-repeat -20px -62px; }
+
+.talk_window .chat_view .content { display: inline-block; margin: 0; padding: 0; border: none; float: none; width: auto; height: auto; min-width: none; min-height: none; max-width: none; max-height: none; clear: none; position: static; left: auto; top: auto; right: auto; bottom: auto; text-align: left; box-sizing: content-box; color: #000; background-color: transparent; font: normal normal normal 12px/160% Arial,Microsoft YaHei; padding: 8px; background: #ffffff; border: 1px solid #d5d5d5; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+
+.talk_window .chat_view .time { margin-left: 22px; color: #b9b9c1; }
+
+.talk_window .write { overflow: hidden; background-color: #F9F9F9; }
+
+.talk_window .write textarea { loat: none; max-width: none; max-height: none; clear: none; position: static; left: auto; top: auto; right: auto; bottom: auto; text-align: left; box-sizing: content-box; background-color: #FFF; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: 160%; font-family: Arial, "Microsoft YaHei"; box-shadow: #aaaaaa 0px 0px 5px inset; margin: 1px; padding: 10px; width: 393px; height: 87px; outline: #0088ff solid 0px; border: 0px solid #0088ff; color: black; resize: none; overflow-x: hidden; overflow-y: auto; }
+
+.talk_window .write .sendMSG { padding: 0 0 5px 0; height: 30px; line-height: 30px; display: block; overflow: hidden; }
+
+.talk_window .write .sendMSG span { float: right; display: block; margin-right: 20px; cursor: pointer; }
+
+.talk_window .write .sendMSG .over:hover { color: #005fea; }
+
+.talk_window .write .sendMSG .Send { border: 1px solid #ddd; background-color: #f1f1f1; width: 75px; height: 28px; text-align: center; }
+
+.talk_window .write .sendMSG button { margin-left: 20px; }
