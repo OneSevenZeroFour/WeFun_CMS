@@ -169,11 +169,11 @@
                     </div>
 
                     <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-                        <form class="am-form am-form-horizontal">
+                        <form class="am-form am-form-horizontal" method="post" enctype="multipart/form-data">
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">标题：</label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" id="user-name in1" placeholder="标题 / title" required>
+                                    <input type="text" id="user-name" class="in1" placeholder="标题 / title" required>
                                     <small>亲，请输入标题！</small>
                                 </div>
                             </div>
@@ -181,23 +181,24 @@
                             <div class="am-form-group">
                                 <label for="user-intro" class="am-u-sm-3 am-form-label">描述：</label>
                                 <div class="am-u-sm-9">
-                                    <textarea class="" rows="5" id="user-intro in2" placeholder="输入商品描述" required></textarea>
+                                    <textarea class="" rows="5" id="user-intro" class="in2" placeholder="输入商品描述" required></textarea>
                                     <small>250字以内写出商品描述...</small>
                                 </div>
                             </div>
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">价格：</label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" style="width:150px;" id="user-name in3" placeholder="亲，请输入价格!" required>
+                                    <input type="text" style="width:150px;" id="user-name" class="in3" placeholder="亲，请输入价格!" required>
                                 </div>
                             </div>
                             <div class="am-form-group">
                                 <label for="user-name" class="am-u-sm-3 am-form-label">图片：</label>
-                                <div class="am-u-sm-9">
+                                <div class="am-u-sm-9" style="position:relative;">
                                     <!-- 添加图片 -->
                                     
                                     
                                     <input type="file" id="in4" multiple="multiple" required/>
+                                    <div class="file-div" style="width:200px;height:30px;position:absolute;left:100px;top:0;background:white;display:none;"></div>
                                     <div class="am-u-sm-9-img" style="padding:0;">
                                         
                                     </div>
@@ -243,40 +244,82 @@
 
     <script src="assets/js/app.js"></script>
     <script>
+        var param = location.search.slice(1).split("=");
+        if(param[0]==='id'){
+            $.ajax({
+              type:'POST',
+              url:'http://localhost:12345/select1',
+              data:{
+                id:param[1]
+              },
+              async: true,
+              success:function(data){
+                var list = JSON.parse(data);
+                var url = list.results[0].imgurl;
+                var $div = $('<div style="position:relative;float:left;"/>');
+                var $span = $('<span style="padding:0 5px;border:1px solid #ccc;position:absolute;top:10px;right:10px;background:#58bc58;color:white;cursor:pointer;line-height:23px;opacity:0.6;">&times;</span>');
+                $span = $span.addClass('btn');
+                var $img = $('<img class="img_1" style="width:135px;height:135px;margin:10px 10px 0 0;"/>').attr('src',"../"+url);
+                console.log(list.results[0].imgurl)
+                $div.append($img);
+                $div.append($span);
+                $(".am-u-sm-9-img").html($div);
+                $('.in1').val(list.results[0].title);
+                $("#user-intro").val(list.results[0].description);
+                $('.in3').val(list.results[0].price)
+                $('.btn').on('click',function(){
+                    var time = $(this).offsetParent('div').index();
+                    // console.log(time)
+                    data.length = data.length-1;
+                    if(data.length===0){
+                        $('#in4').val("");
+                        $('.file-div').css('display','none');
+
+                    }
+                    $(this).parent('div').remove();
+                })
+                console.log(list.results[0])
+              }
+            });
+        }
         function send() {
             console.log("a")
             var param = location.search.slice(1).split("=");
             console.log(param[1])
-            if(param[0]==='id'){
-                $.ajax({
-                  type:'POST',
-                  url:'http://localhost:12345/amend',
-                  data:{
-                    id:param[1],
-                    name: $("#user-name").val(),
-                    description: $("#user-intro").val()
-                  },
-                  // async: true,
-                  success:function(data){
-                  }
-                });
-            }else{
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost:12345/insert",
-                    data: {
-                        name: $("#user-name").val(),
-                        description: $("#user-intro").val()
-                    },
-                    async: true,
-                    success: function(data) {
-
-                    }
-                });
-            }
-            if($('#in1').val()===null || $('#in2').val()===""|| $('#in3').val()===""|| $('#in4').val()===""){
+            if($('.in1').val()===null || $('.in2').val()===""|| $('.in3').val()===""|| $('.am-u-sm-9-img').text()==""){
                 alert('亲，请将数据填写完整！');
             }else{
+                if(param[0]==='id'){
+                    $.ajax({
+                      type:'POST',
+                      url:'http://localhost:12345/amend',
+                      data:{
+                        id:param[1],
+                        imgurl: $(".img_1").attr('src').replace(/..\//,""),
+                        title: $('.in1').val(),
+                        description: $("#user-intro").val(),
+                        price: $('.in3').val()
+                      },
+                      async: true,
+                      success:function(data){
+                      }
+                    });
+                }else{
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:12345/insert",
+                        data: {
+                            imgurl:$(".img_1").attr('src').replace(/..\//,""),
+                            title:$('.in1').val(),
+                            description:$("#user-intro").val(),
+                            price:$('.in3').val()
+                        },
+                        async: true,
+                        success: function(data) {
+
+                        }
+                    });
+                }
                 window.location.href = "admin-table.html";
             }
         }
@@ -288,6 +331,7 @@
             for(var i=0;i<file.length;i++){
                 formData.append('m',file[i]);
             }
+            $('.file-div').css('display','block');
             console.log(formData)
             $.ajax({
                 url:'http://localhost:1234/profile',
@@ -299,13 +343,21 @@
                     for(var i=0;i<data.length;i++){
                         $('.am-u-sm-9-img').append(
                             `<div style="position:relative;float:left;">
-                                <img src="../img/${data[i].filename}" style="margin:10px 10px 0 0;width:135px;height:135px;"/>
-                                <span style="padding:0 5px;border:1px solid #ccc;position:absolute;bottom:0;left:50%;margin-left:-26px;background:#58bc58;color:white;" class="btn">删除</span>
+                                <img src="../img/${data[i].filename}" class="img_1" style="margin:10px 10px 0 0;width:135px;height:135px;"/>
+                                <span style="padding:0 5px;border:1px solid #ccc;position:absolute;top:10px;right:10px;background:#58bc58;color:white;cursor:pointer;line-height:23px;opacity:0.6;" class="btn">&times;</span>
                             </div>`
                         );
                             
                     }
                     $('.btn').on('click',function(){
+                        var time = $(this).offsetParent('div').index();
+                        // console.log(time)
+                        data.length = data.length-1;
+                        if(data.length===0){
+                            $('#in4').val("");
+                            $('.file-div').css('display','none');
+
+                        }
                         $(this).parent('div').remove();
                     })
                     console.log(data)

@@ -2,7 +2,7 @@
 * @Author: Marte
 * @Date:   2017-09-13 18:59:00
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-20 15:10:07
+* @Last Modified time: 2017-09-21 21:03:07
 */
 var http = require("http");
 var url = require('url');
@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 	host:'localhost',
 	user:'liangme',
 	password:'12345',
-	database:'1704'
+	database:'muyingzhijia'
 });
 // 执行连接
 connection.connect();
@@ -29,11 +29,45 @@ http.createServer(function(request,response){
 	request.on('end',function(){
 		var pathname = url.parse(request.url).pathname;
 		var posts = querystring.parse(post);
+		console.log(posts);
 		// 解决跨越
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		switch(pathname){
 			case "/select":
-				connection.query('select * from students',function(error,results,fields){
+				connection.query(`select * from listgoods order by id limit ${posts.page},15`,function(error,results,fields){
+					if(error) throw error;
+					console.log('the solution is:',results);
+					response.end(JSON.stringify({
+						status:1,
+						results
+					}))
+				});
+				break;
+				break;
+			case "/inquire":
+				connection.query(`SELECT * FROM listgoods WHERE ${posts.sname} like '%${posts.connect}%'`,function(error,results,fields){
+					if(error) throw error;
+					console.log('the solution is:',results);
+					response.end(JSON.stringify({
+						status:1,
+						results
+					}))
+				});
+				break;
+				break;
+			case "/select1":
+				connection.query(`select * from listgoods where id = "${posts.id}"`,function(error,results,fields){
+					if(error) throw error;
+					console.log('the solution is:',results);
+					response.end(JSON.stringify({
+						status:1,
+						results
+					}))
+				});
+				break;
+				break;
+			case "/selectAll":
+				connection.query('select * from listgoods',function(error,results,fields){
 					if(error) throw error;
 					console.log('the solution is:',results);
 					response.end(JSON.stringify({
@@ -43,7 +77,7 @@ http.createServer(function(request,response){
 				});
 				break;
 			case '/insert':
-				connection.query(`insert into students(name,description) values ("${posts.name}","${posts.description}")`,function(error,results,fields){
+				connection.query(`insert into listgoods(imgurl,title,description,price) values("${posts.imgurl}","${posts.title}","${posts.description}","${posts.price}")`,function(error,results,fields){
 						if(error) throw error;
 						console.log('The solution is:',results);
 						response.end(JSON.stringify({
@@ -53,7 +87,7 @@ http.createServer(function(request,response){
 					});
 				break;
 			case '/delete':
-				connection.query(`DELETE FROM students where id =  ${posts.id}`,function(error,results,fields){
+				connection.query(`DELETE FROM listgoods where id = "${posts.id}"`,function(error,results,fields){
 					if(error) throw error;console.log(posts.id)
 					console.log('The solution is:',results);
 					response.end(JSON.stringify({
@@ -63,13 +97,14 @@ http.createServer(function(request,response){
 				});
 				break;
 			case '/amend':
-				connection.query(`update students set name="${posts.name}",description="${posts.description}" where id=${posts.id}`,function(error,results,fields){
+				connection.query(`update listgoods set imgurl="${posts.imgurl}",title="${posts.title}",description="${posts.description}",price="${posts.price}" where id=${posts.id}`,function(error,results,fields){
 					if(error) throw error;
 					console.log('The solution is:',results);
 					response.end(JSON.stringify({
 						status:1,
 						results
 					}))
+					console.log(posts)
 				});
 				break;
 		}
