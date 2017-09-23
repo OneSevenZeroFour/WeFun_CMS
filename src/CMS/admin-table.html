@@ -104,8 +104,6 @@
           <div class="am-btn-toolbar">
             <div class="am-btn-group am-btn-group-xs">
               <button type="button" onclick="add()" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
-              <button type="button" class="am-btn am-btn-default">保存</button>
-              <button type="button" class="am-btn am-btn-default">审核</button>
               <button type="button" class="am-btn am-btn-default delete-m">删除</button>
             </div>
           </div>
@@ -144,19 +142,13 @@
             <div class="am-cf">
               共 <span class="am-cf-sp"></span> 条记录
               <div class="am-fr">
-                <ul class="am-pagination">
-                  <li class="am-disabled"><a href="#">«</a></li>
+                <ul class="am-pagination" style="position:relative;">
                   <li class="am-active"><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li><a href="#">»</a></li>
                 </ul>
               </div>
             </div>
             <hr />
-            <p>注：.....</p>
+            <p>注：666</p>
         </div>
 
       </div>
@@ -193,15 +185,30 @@
 	function add(){
 		window.location.href = "new&amend.html"
 	}
+  var pageNo=1;
+  var page;
   $.ajax({
     type:"POST",
     url:"http://localhost:12345/selectAll",
     success:function(data){
       var list = JSON.parse(data).results[0];
       $('.am-cf-sp').text(list['COUNT(*)']);
+      // 计算可以分成几页
+      page = Math.ceil(list['COUNT(*)']/45);
+      console.log(page)
+      // 生成分页页码
+      for(var i=2;i<=page;i++){
+        $('.am-pagination').append(`
+          <li><a href="#">${i}</a></li>
+          `);
+      }
+      // 点击切换上页
+      // $('.prev').on('click',function(){
+      //   if($('.am-pagination li').last())
+      // })
     }
   })
-  var pageNo=1;
+
   // 分页页码切换
   $('.am-pagination').on('click','li',function(){
     pageNo = $(this).find('a').text();
@@ -221,16 +228,14 @@
       success:function(data){
         var list = JSON.parse(data);
         var html = list.results.map(function(item){
-          // console.log(item)
-          var time = item.addtime;
-          time=time.toString().replace(/T/," ");
-          time = time.replace(/.000Z/,"");
+          var time = times(item);
+          console.log(time)
           return `
             <tr data-guid="${item.id}">
                   <td><input type="checkbox" /></td>
                   <td>${item.id}</td>
                   <td><img src="../${item.imgurl}" style="width:60px;height:60px;"></td>
-                  <td>${item.title}</td>
+                  <td style="max-width:350px;">${item.title}</td>
                   <td class="am-hide-sm-only">${item.description}</td>
                   <td class="am-hide-sm-only">${item.price}</td>
                   <td class="am-hide-sm-only">${time}</td>
@@ -247,77 +252,15 @@
         }).join("")
         $("#list").html(html);
         // 点击tr勾选该商品
-        $('tr').on('click',function(){
-          var $check1 = $('tbody').find(':checkbox');
-          var $tr = $('tbody tr').filter('.selected');
-          var $check = $(this).find(':checkbox');
-          if($(this).hasClass('selected')){
-            $check.prop('checked',false);
-            $(this).removeClass('selected');
-          }else{
-            $check.prop('checked',true);
-            $(this).addClass('selected');
-          }
-          // 取消/选中全勾选
-          if(! $(this).hasClass('selected')){
-            $('.checkedAll').prop('checked',false).removeClass('selectedAll');
-          }else if($check1.length===($tr.length + 1)){
-            $('.checkedAll').prop('checked',true).addClass('selectedAll');
-          }
-
-        })
+        $('tbody tr').on('click',checkTr);
         // 全勾选商品
-        $('.checkedAll').on('click',function(){
-          var $check1 = $('tbody').find(':checkbox');
-          console.log(typeof $check1)
-          if($(this).hasClass('selectedAll')){
-            $(this).prop('checked',false).removeClass('selectedAll');
-            $check1.prop('checked',this.checked);
-            $check1.parents('tr').removeClass('selected');
-          }else{
-            $(this).prop('checked',true).addClass('selectedAll');
-            $check1.prop('checked',this.checked);
-            $check1.parents('tr').addClass('selected');
-          }
-        })
-        
+        $('.checkedAll').on('click',checkAll);
         // 表头删除
-        $('.delete-m').on('click',function(){
-          var $tr = $('tbody tr').filter('.selected');
-          console.log($tr)
-          $tr.remove();
-          $.ajax({
-            type:'POST',
-            url:'http://localhost:12345/delete',
-            data:{
-              id:$tr.data('guid')
-            },
-            async:true,
-            success:function(data){
-            }
-          });
-        })
+        $('.delete-m').on('click',deleteTop);
         // tr中的删除
-        $('tr').on('click','.delete-mmm',function(){
-          // location.reload();
-          $.ajax({
-            type:'POST',
-            url:'http://localhost:12345/delete',
-            data:{
-              id:$(this).parents('tr').data('guid')
-            },
-            async:false,
-            success:function(data){
-              console.log(data)
-            }
-          });
-          $(this).parents('tr').remove();
-          console.log($(this).parents('tr')[0])
-        })
-        // 修改
-        $('.edit').on('click',function(){console.log(222)
-          window.location.href = "new&amend.html?id="+$(this).parents('tr').data('guid');
-        })
+        $('tr').on('click','.delete-mmm',deleteTr);
+        // 编辑
+        $('.edit').on('click',editM);
         // 查询
         $('.seek').on('click',function(){
           var sname = $('select').val();
@@ -331,27 +274,23 @@
             async: true,
             success:function(data){
               var list = JSON.parse(data);
-              $('tr').remove();
+              $('tbody tr').remove();
               var html = list.results.map(function(item){
-                // console.log(item)
-                var time = item.addtime;
-                time=time.toString().replace(/T/," ");
-                time = time.replace(/.000Z/,"");
-                // console.log(list.results.length)
+                var time = times(item);
                 return `
                   <tr data-guid="${item.id}">
                         <td><input type="checkbox" /></td>
                         <td>${item.id}</td>
                         <td><img src="../${item.imgurl}" style="width:60px;height:60px;"></td>
-                        <td>${item.title}</td>
+                        <td style="max-width:350px;">${item.title}</td>
                         <td class="am-hide-sm-only">${item.description}</td>
                         <td class="am-hide-sm-only">${item.price}</td>
                         <td class="am-hide-sm-only">${time}</td>
                         <td>
                           <div class="am-btn-toolbar">
                             <div class="am-btn-group am-btn-group-xs">
-                              <button class="Lmamend am-btn am-btn-default am-btn-xs am-text-secondary" style="width:60px;"><span class="am-icon-pencil-square-o"></span> 编辑</button>
-                              <button class="Lmbtn am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" style="width:60px;"><span class="am-icon-trash-o"></span> 删除</button>
+                              <button class="Lmamend am-btn am-btn-default am-btn-xs am-text-secondary edit" style="width:60px;"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                              <button class="Lmbtn am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete-mmm" style="width:60px;"><span class="am-icon-trash-o"></span> 删除</button>
                             </div>
                           </div>
                         </td>
@@ -360,6 +299,18 @@
               }).join("")
               $("#list").html(html);
               $('.am-cf-sp').text(list.results.length);
+              // 清空之前的页码
+              $('.am-pagination').find('li').remove();
+              // 点击tr勾选该商品
+              $('tbody tr').on('click',checkTr);
+              // 全勾选商品
+              $('.checkedAll').on('click',checkAll);
+              // 表头删除
+              $('.delete-m').on('click',deleteTop);
+              // tr中的删除
+              $('tr').on('click','.delete-mmm',deleteTr);
+              // 编辑
+              $('.edit').on('click',editM);
             }
           })
         })
@@ -367,6 +318,109 @@
     })
   }
 	show(pageNo);
+  // 点击tr勾选该商品
+  function checkTr(){
+    var $check1 = $('tbody').find(':checkbox');
+    var $tr = $('tbody tr').filter('.selected');
+    var $check = $(this).find(':checkbox');
+    if($(this).hasClass('selected')){
+      $check.prop('checked',false);
+      $(this).removeClass('selected');
+    }else{
+      $check.prop('checked',true);
+      $(this).addClass('selected');
+    }
+    // 取消/选中全勾选
+    if(! $(this).hasClass('selected')){
+      $('.checkedAll').prop('checked',false).removeClass('selectedAll');
+    }else if($check1.length===($tr.length + 1)){
+      $('.checkedAll').prop('checked',true).addClass('selectedAll');
+    }
+  }
+  // 全勾选商品
+  function checkAll(){
+    var $check1 = $('tbody').find(':checkbox');
+    if($(this).hasClass('selectedAll')){
+      $(this).prop('checked',false);
+      $check1.prop('checked',false);
+      $check1.parents('tr').removeClass('selected');
+    }else{console.log($(this))
+      $check1.prop('checked',this.checked);
+      $check1.parents('tr').addClass('selected');
+    }
+  }
+  // 表头删除
+  function deleteTop(){
+    var tr = $('tbody').children(".selected");
+    var arr = [];
+    var guid;
+    for(var i = 0;i<tr.length;i++){
+      guid = tr[i].dataset.guid;
+      arr.push(guid);
+      tr[i].remove();
+      $.ajax({
+        type:'POST',
+        url:'http://localhost:12345/delete',
+        data:{
+          id:guid
+        },
+        async:true,
+        success:function(data){
+        }
+      });
+    }
+    console.log(arr)
+    // $tr.remove();
+  }
+  // tr中的删除
+  function deleteTr(){
+    // location.reload();
+    $.ajax({
+      type:'POST',
+      url:'http://localhost:12345/delete',
+      data:{
+        id:$(this).parents('tr').data('guid')
+      },
+      async:false,
+      success:function(data){
+        console.log(data)
+      }
+    });
+    $(this).parents('tr').remove();
+    console.log($(this).parents('tr')[0])
+  }
+  // 编辑
+  function editM(){
+    window.location.href = "new&amend.html?id="+$(this).parents('tr').data('guid');
+  }
+  // 计算时间
+  function times(item){
+    var time = item.addtime;
+    time = new Date(time);
+    var year = time.getFullYear();
+    var month = time.getMonth()+1;
+    var date = time.getDate();
+    var hour = time.getHours();
+    var minute = time.getMinutes();
+    var sec = time.getSeconds();
+    if(month<10){
+      month = '0'+month;
+    }
+    if(date<10){
+      date = '0'+date;
+    }
+    if(hour<10){
+      hour = '0'+hour;
+    }
+    if(minute<10){
+      minute = '0'+minute;
+    }
+    if(sec<10){
+      sec = '0'+sec;
+    }
+    time = year + '-' + month + '-' + date + ' ' + hour + ':' + minute + ':' + sec;
+    return time;
+  }
 </script>
 </body>
 </html>

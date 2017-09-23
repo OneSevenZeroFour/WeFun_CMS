@@ -2,7 +2,7 @@
 * @Author: Marte
 * @Date:   2017-09-13 18:59:00
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-22 19:24:01
+* @Last Modified time: 2017-09-23 15:51:10
 */
 var http = require("http");
 var url = require('url');
@@ -35,7 +35,7 @@ http.createServer(function(request,response){
 		switch(pathname){
 			// 分页
 			case "/select":
-				connection.query(`select * from listgoods order by id limit ${posts.page},15`,function(error,results,fields){
+				connection.query(`select * from listgoods order by id limit ${posts.page},45`,function(error,results,fields){
 					if(error) throw error;
 					console.log('the solution is:',results);
 					response.end(JSON.stringify({

@@ -67,8 +67,11 @@
       },
       async: true,
       success: function(data) {
-        console.log(666)
-        window.location.href = "./admin-table.html";
+        var list = JSON.parse(data);
+        console.log(list.results[0])
+        if(list.results.length>0){
+          window.location.href = "./admin-table.html";
+        }
       }
     });
   })
