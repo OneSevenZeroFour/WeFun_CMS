@@ -302,6 +302,7 @@ dd {
 
                     form {
 
+<<<<<<< HEAD
                         font-size: 12px;
                         height: 37px;
                         width: 490px;
@@ -318,6 +319,122 @@ dd {
                         border: 1px solid #ff5c00;
                     }
                     .searchBtn {
+=======
+  
+		    }
+		}
+		.rt{
+			margin-top:10px;
+			height:61px;
+			.mallSearch{
+				width: 492px;
+				height:61px;
+				.searchbox{
+					width:490px;
+					
+					form{
+						
+					    font-size: 12px;
+					  	height:37px;
+					    width:490px;
+					    height:37px;
+					}
+					.search{
+						margin-left:2px;
+						width:420px;
+						height: 34px;
+					    line-height: 34px;
+					    float: left;
+					    font-size: 12px;
+					    position: relative;
+					    border:1px solid #ff5c00;
+					}
+					.searchBtn{
+						 margin:0 !important;
+						width:66px;
+						height:38px;
+						float:right;
+						border:1px solid #ff5c00;
+						top:0;
+						left:0;
+						background: url(./img/newIndexIcon.png) 15px -78px no-repeat;background-color: #ff5c00;
+					}
+				}
+				.hot_key{
+					height:14px;
+					li{
+						float:left;
+						color:#999;
+						a{color:#999;}
+						a:hover{color:#ff5c00;}
+					}
+					.active_hot a{color:#ff5c00;}
+				}
+			}
+		}
+	}
+	.navbg{
+		margin-top: 25px;
+	    background: #fff;
+	    border-top: 1px solid #ccc;
+	    position: relative;
+	    width:100%;
+	}
+	.navbox{
+		height:35px;
+		background-color:#fff;
+		font-size:14px;
+		line-height:35px;
+		.list li{
+			display:block;
+			float:left;
+			padding: 0 20px;
+		    line-height: 35px;
+		    position: relative;
+		    .haiT-child{
+		    	display: none;
+			    margin-left: -21px;
+			    margin-right: -1px;
+			    padding: 0 20px 0 20px;
+			    position: absolute;
+			    z-index: 999;
+			    background-color: #fff;
+			    border-bottom: 1px solid #ff9900;
+			    border-right: 1px solid #ff9900;
+			    border-left: 1px solid #ff9900;
+			}
+		}
+		.list li:nth-type-of(1) a{color:#ff5c00;}
+		.currentpage{color:#ff5c00;}
+		.hovernow{
+			margin:0 1px;
+		}
+		// .hovernow:hover{border-right:1px solid #ff9900;border-left:1px solid #ff9900;}
+		// .hovernow:hover .haiT-child{display:block;}
+		.navlist .zhong a{
+			position: relative;
+		    font-weight: bold;
+		    display: block;
+		    height: 34px;
+		    width: 140px;
+		    text-indent: 17px;
+		    font-size: 14px;
+		    color: #ff5c00;
+		    line-height: 35px;
+		    border: 1px solid #fff;
+		    border-bottom: none;
+		}
+		.navlist i{
+			position: absolute;
+		    top: 15px;
+		    right: 20px;
+		    background: url(./img/top_bar2.png) no-repeat;
+		    background-position: -110px -65px;
+		    width: 9px;
+		    height: 6px;
+		}
+		.navlist:hover .zhong a i{background-position: -117px -74px;}
+>>>>>>> 5ba3fdf97ecc5b7b7f81fdcf5dfe3966401898b0
 
                         width: 66px;
                         height: 38px;
