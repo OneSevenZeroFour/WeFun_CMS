@@ -133,8 +133,7 @@ dl, dt, dd { margin: 0; padding: 0; }
 
 #hd .hdbottom .rt .mallSearch .searchbox .search { margin-left: 2px; width: 420px; height: 34px; line-height: 34px; float: left; font-size: 12px; position: relative; border: 1px solid #ff5c00; }
 
-#hd .hdbottom .rt .mallSearch .searchbox .searchBtn { width: 66px; height: 38px; float: right; border: 1px solid #ff5c00; top: 0; left: 0; background: url(./img/newIndexIcon.png) 15px -78px no-repeat; background-color: #ff5c00; }
-
+#hd .hdbottom .rt .mallSearch .searchbox .searchBtn { margin: 0 !important; width: 66px; height: 38px; float: right; border: 1px solid #ff5c00; top: 0; left: 0; background: url(./img/newIndexIcon.png) 15px -78px no-repeat; background-color: #ff5c00; }
 #hd .hdbottom .rt .mallSearch .hot_key { height: 14px; }
 
 #hd .hdbottom .rt .mallSearch .hot_key li { float: left; color: #999; }
@@ -521,9 +520,12 @@ header { background-color: #F5F4F6; }
 
 .slidebar .ok:hover a.main #cartSlideNum { color: #fff; }
 
-.slidebar .ok { height: 150px; display: block; }
+.slidebar .ok { height: 96px; display: flex; /* vertical-align: bottom; */ justify-content: center; flex-direction: column; padding: 30px 0px 20px 0; margin-bottom: 3px; }
+.slidebar .ok .level-dt { margin-top: -75px; }
 
-.slidebar .ok .level-dt { margin-top: 30px; }
+.slidebar .kefu { background-color: #ff5c00; }
+
+.slidebar .kefu span { color: #fff !important; }
 
 .slidebar #cartSlideNum { color: #ff5c00; }
 
