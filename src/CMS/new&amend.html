@@ -1,0 +1,370 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>新增页面</title>
+    <meta name="description" content="这是一个 user 页面">
+    <meta name="keywords" content="user">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+以获得更好的体验！</p>
+<![endif]-->
+
+    <header class="am-topbar am-topbar-inverse admin-header">
+        <div class="am-topbar-brand">
+            <strong>Amaze UI</strong> <small>后台管理模板</small>
+        </div>
+
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+            <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+                <li>
+                    <a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a>
+                </li>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li>
+                            <a href="#"><span class="am-icon-user"></span> 资料</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="am-icon-cog"></span> 设置</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="am-icon-power-off"></span> 退出</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="am-hide-sm-only">
+                    <a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="am-cf admin-main">
+        <!-- sidebar start -->
+        <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+            <div class="am-offcanvas-bar admin-offcanvas-bar">
+                <ul class="am-list admin-sidebar-list">
+                    <li>
+                        <a href="admin-index.html"><span class="am-icon-home"></span> 首页</a>
+                    </li>
+                    <li class="admin-parent">
+                        <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                            <li>
+                                <a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a>
+                            </li>
+                            <li>
+                                <a href="admin-help.html"><span class="am-icon-puzzle-piece"></span> 帮助页</a>
+                            </li>
+                            <li>
+                                <a href="admin-gallery.html"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a>
+                            </li>
+                            <li>
+                                <a href="admin-log.html"><span class="am-icon-calendar"></span> 系统日志</a>
+                            </li>
+                            <li>
+                                <a href="admin-404.html"><span class="am-icon-bug"></span> 404</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="admin-table.html"><span class="am-icon-table"></span> 表格</a>
+                    </li>
+                    <li>
+                        <a href="admin-form.html"><span class="am-icon-pencil-square-o"></span> 表单</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="am-icon-sign-out"></span> 注销</a>
+                    </li>
+                </ul>
+
+                <div class="am-panel am-panel-default admin-sidebar-panel">
+                    <div class="am-panel-bd">
+                        <p><span class="am-icon-bookmark"></span> 公告</p>
+                        <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                    </div>
+                </div>
+
+                <div class="am-panel am-panel-default admin-sidebar-panel">
+                    <div class="am-panel-bd">
+                        <p><span class="am-icon-tag"></span> wiki</p>
+                        <p>Welcome to the Amaze UI wiki!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar end -->
+
+        <!-- content start -->
+        <div class="admin-content">
+            <div class="admin-content-body">
+                <div class="am-cf am-padding am-padding-bottom-0">
+                    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品信息</strong> / <small>Commodity Information</small></div>
+                </div>
+
+                <hr/>
+
+                <div class="am-g">
+                    <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+                        <div class="am-panel am-panel-default">
+                            <div class="am-panel-bd">
+                                <div class="am-g">
+                                    <div class="am-u-md-4">
+                                        <img class="am-img-circle am-img-thumbnail" src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80" alt="" />
+                                    </div>
+                                    <div class="am-u-md-8">
+                                        <p>你可以使用
+                                            <a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                                        <form class="am-form">
+                                            <div class="am-form-group">
+                                                <input type="file" id="user-pic">
+                                                <p class="am-form-help">请选择要上传的文件...</p>
+                                                <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="am-panel am-panel-default">
+                            <div class="am-panel-bd">
+                                <div class="user-info">
+                                    <p>等级信息</p>
+                                    <div class="am-progress am-progress-sm">
+                                        <div class="am-progress-bar" style="width: 60%"></div>
+                                    </div>
+                                    <p class="user-info-order">当前等级：<strong>LV8</strong> 活跃天数：<strong>587</strong> 距离下一级别：<strong>160</strong></p>
+                                </div>
+                                <div class="user-info">
+                                    <p>信用信息</p>
+                                    <div class="am-progress am-progress-sm">
+                                        <div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
+                                    </div>
+                                    <p class="user-info-order">信用等级：正常当前 信用积分：<strong>80</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+                        <form class="am-form am-form-horizontal" method="post" enctype="multipart/form-data">
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">标题：</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" id="user-name" class="in1" placeholder="标题 / title" required>
+                                    <small>亲，请输入标题！</small>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="user-intro" class="am-u-sm-3 am-form-label">描述：</label>
+                                <div class="am-u-sm-9">
+                                    <textarea class="" rows="5" id="user-intro" class="in2" placeholder="输入商品描述" required></textarea>
+                                    <small>250字以内写出商品描述...</small>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">价格：</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" style="width:150px;" id="user-name" class="in3" placeholder="亲，请输入价格!" required>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">图片：</label>
+                                <div class="am-u-sm-9" style="position:relative;">
+                                    <!-- 添加图片 -->
+                                    
+                                    
+                                    <input type="file" id="in4" multiple="multiple" required/>
+                                    <div class="file-div" style="width:200px;height:30px;position:absolute;left:100px;top:0;background:white;display:none;"></div>
+                                    <div class="am-u-sm-9-img" style="padding:0;">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button onclick="send()" type="button" class="am-btn am-btn-primary">保存修改</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="admin-content-footer">
+                <hr>
+                <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+            </footer>
+
+        </div>
+        <!-- content end -->
+
+    </div>
+
+    <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+    <footer>
+        <hr>
+        <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    </footer>
+
+        <!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="assets/js/jquery.js"></script>
+    <!--<![endif]-->
+    <script src="assets/js/amazeui.min.js"></script>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+        var param = location.search.slice(1).split("=");
+        if(param[0]==='id'){
+            $.ajax({
+              type:'POST',
+              url:'http://localhost:12345/select1',
+              data:{
+                id:param[1]
+              },
+              async: true,
+              success:function(data){
+                var list = JSON.parse(data);
+                console.log(list.results[0])
+                var url = list.results[0].imgurl;
+                var $div = $('<div style="position:relative;float:left;"/>');
+                var $span = $('<span style="padding:0 5px;border:1px solid #ccc;position:absolute;top:10px;right:10px;background:#58bc58;color:white;cursor:pointer;line-height:23px;opacity:0.6;">&times;</span>');
+                $span = $span.addClass('btn');
+                var $img = $('<img class="img_1" style="width:135px;height:135px;margin:10px 10px 0 0;"/>').attr('src',"../"+url);
+                console.log(list.results[0].imgurl)
+                $div.append($img);
+                $div.append($span);
+                $(".am-u-sm-9-img").html($div);
+                $('.in1').val(list.results[0].title);
+                $("#user-intro").val(list.results[0].description);
+                $('.in3').val(list.results[0].price)
+                $('.btn').on('click',function(){
+                    var time = $(this).offsetParent('div').index();
+                    // console.log(time)
+                    data.length = data.length-1;
+                    if(data.length===0){
+                        $('#in4').val("");
+                        $('.file-div').css('display','none');
+
+                    }
+                    $(this).parent('div').remove();
+                })
+                console.log(list.results[0])
+              }
+            });
+        }
+        function send() {
+            console.log("a")
+            var param = location.search.slice(1).split("=");
+            console.log(param[1])
+            if($('.in1').val()===null || $('.in2').val()===""|| $('.in3').val()===""|| $('.am-u-sm-9-img').text()==""){
+                alert('亲，请将数据填写完整！');
+            }else{
+                if(param[0]==='id'){
+                    $.ajax({
+                      type:'POST',
+                      url:'http://localhost:12345/amend',
+                      data:{
+                        id:param[1],
+                        imgurl: $(".img_1").attr('src').replace(/..\//,""),
+                        title: $('.in1').val(),
+                        description: $("#user-intro").val(),
+                        price: $('.in3').val()
+                      },
+                      async: true,
+                      success:function(data){
+                      }
+                    });
+                }else{
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:12345/insert",
+                        data: {
+                            imgurl:$(".img_1").attr('src').replace(/..\//,""),
+                            title:$('.in1').val(),
+                            description:$("#user-intro").val(),
+                            price:$('.in3').val()
+                        },
+                        async: true,
+                        success: function(data) {
+
+                        }
+                    });
+                }
+                window.location.href = "admin-table.html";
+            }
+        }
+        $('#in4').on('change',function(){
+            var formData = new FormData();
+            var file = $('#in4')[0].files;
+            
+            console.log(file)
+            for(var i=0;i<file.length;i++){
+                formData.append('m',file[i]);
+            }
+            $('.file-div').css('display','block');
+            console.log(formData)
+            $.ajax({
+                url:'http://localhost:1234/profile',
+                type:'POST',
+                data:formData,
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    for(var i=0;i<data.length;i++){
+                        $('.am-u-sm-9-img').append(
+                            `<div style="position:relative;float:left;">
+                                <img src="../img/${data[i].filename}" class="img_1" style="margin:10px 10px 0 0;width:135px;height:135px;"/>
+                                <span style="padding:0 5px;border:1px solid #ccc;position:absolute;top:10px;right:10px;background:#58bc58;color:white;cursor:pointer;line-height:23px;opacity:0.6;" class="btn">&times;</span>
+                            </div>`
+                        );
+                            
+                    }
+                    $('.btn').on('click',function(){
+                        var time = $(this).offsetParent('div').index();
+                        // console.log(time)
+                        data.length = data.length-1;
+                        if(data.length===0){
+                            $('#in4').val("");
+                            $('.file-div').css('display','none');
+
+                        }
+                        $(this).parent('div').remove();
+                    })
+                    console.log(data)
+                }
+            })
+        })
+    </script>
+</body>
+</html>

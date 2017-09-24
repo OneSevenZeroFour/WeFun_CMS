@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base href="../index.html">
+	<meta charset="UTF-8">
+	<title>详情页</title>
+	<link rel="stylesheet" href="./css/details.css">
+	<script src="lib/require.js" data-main="js/details"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=dln1cMNEIlU2I4qWHTjRXkd0AcGLaGlr"></script>
+</head>
+<body>
+	<header></header>
+	<div class='header'>
+		<div class='logo'>
+			<a href="#"><img src="img/logo.png" alt=""></a>
+		</div>
+		<div class='rtl'>
+			<div class='mallSearch'>
+				<div class='searchbox'>
+					<form>
+						<input type="text" placeholder='搜索 母婴之家 商品品牌' class='search'>
+						<button class='searchBtn'></button>
+					</form>
+				</div>
+				<ul class='hot_key'>
+					<li>热门搜索：</li>
+					<li class='active_hot'><a href="">澳洲直邮</a>&nbsp;&nbsp;</li>
+					<li ><a href="">钙铁锌</a>&nbsp;&nbsp;</li>
+					<li ><a href="">美得乐</a>&nbsp;&nbsp;</li>
+					<li ><a href="">保温杯</a>&nbsp;&nbsp;</li>
+					<li ><a href="">推车</a>&nbsp;&nbsp;</li>
+					<li ><a href="">美德乐</a>&nbsp;&nbsp;</li>
+				</ul>
+			</div>
+		</div>
+		<div class='shopcart'>
+			<dl id='shoppingCar_box'></dl>
+			<dt class='header-shoppingCar sprite-icon'>
+				<a href="./html/cart.html">
+					<i class='sprite-icon icon-shoppingCar'></i>购物车
+					<span id='shopping_amount' class='sprite-icon icon-shopping-amount'>
+						<strong id='cartListCount'>0</strong>
+					</span>
+				</a>
+			</dt>
+			<dd id='shoppingCarcontainer'>
+				<div id="settleup-content">
+                    <div class="smt">
+                    	<h4 class="fl">最新加入的商品</h4>
+                    </div>
+                    <div class="smc"></div>
+                  	<div class="smb">
+                                    <div class="shop_cart-settlement">共<span class="mcart-p-price">&nbsp;<strong class='listqtys'></strong>&nbsp;</span>件商品　共计<span class="mcart-p-price f20">￥</span><span class="mcart-p-price"><strong class="f20 totals"></strong></span></div>
+                                    <div class="shop_cart-btn"><a href="./html/cart.html" title="去购物车结算" class="sprite-icon icon-btnSettlement"  id="btn-payforgoods"></a></div>
+                             </div>
+                     </div>
+
+			</dd>
+		</div>
+	</div>
+	<div class='nav'></div>
+	<div class='url wrap'>
+		<li><a href=""><b>首页</b></a>   &gt</li>
+		<li>商品   &gt</li>
+		<li><a href="" class='goodsname'></a></li>
+	</div>
+	<div class='bodyCon mrbtm20 clearfix '>
+		<div class='clearfix borderf1'>
+			<div class='conTopLeftBox'>
+				<!-- 放大镜 -->
+				<div class='preview'>
+					<div class='jqzoom'>
+						<img src="" alt="" id='imgzoom' data-big="">
+					</div>
+					<div class='spec'>
+						<div class='arrowbox lt'>
+							<div class='control specLeftT'></div>
+						</div>
+						<div class='specList'>
+							<ul class="listImg">
+								<li><img src="./img/listimg04" alt=""></li>
+								<li><img src="./img/listimg05" alt=""></li>
+								<li><img src="./img/listimg06" alt=""></li>
+							</ul>
+						</div>
+						<div class='arrowbox rt'>
+							<div class='control specRightT'></div>
+						</div>
+					</div>
+				</div>
+				<div class='sharebox clearfix'>
+					<div class='bdsharebuttonbox bdshare-button-style1-24'>
+						<a href="" class='bds_more' ></a>
+						<a href="" class='bds_weixin' title='分享到微信'></a>
+						<a href="" class='bds_tsina' title='分享到新浪微博'></a>
+						<a href="" class='bds_tqq' title='分享到腾讯微博'></a>
+						<a href="" class='bds_qzone' title='分享到QQ空间'></a>
+						<a href="" class='bds_tqf' title='分享到腾讯朋友'></a>
+
+					</div>
+					<a href="" class='attention' ></a>
+				</div>
+			</div>
+			<div class='conTopConBox'>
+				<div id='name'>
+					<h1></h1>
+				</div>
+				<div class='fahuo-cang'>
+					<i></i>母婴之家发货
+				</div>
+				<div class='clearfix'>
+					<ul id='summary' class='clearfix'>
+						<li class='summary_price'>
+							<div class='sx_dt pdt5'>促 销 价</div>
+							<span class='p_price'></span>
+						</li>
+						<li class='bdbtm clearfix'></li>
+						<li class='choose clearfix'>
+							<div class='sx_dt'>规&nbsp;&nbsp;&nbsp;&nbsp;格</div>
+							<div class='sx_dd'>
+								<ul class='size_num'>
+									<li class='select'><a href="">3条装</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class='choose clearfix and'>
+							<div class="sx_dt">颜&nbsp;&nbsp;&nbsp;&nbsp;色</div>
+							<div class="sx_dd">
+                                    <ul class="size_num" id="color_choose"><li class="select"><a data-type="color" href="javascript:;" target="_self">随机</a></li></ul>
+                                </div>
+						</li>
+
+						<li id="choose-amount" class="i_buy_div clearfix">
+                            <div class="sx_dt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                            <div class="sx_dd pdt10 clearfix">
+                                <div class="choose_num_ul">
+                                    <div class="computing_num">
+
+                                        <input type="text" value="1" maxlength="2" id="txtqyt">
+                                    </div>
+                                    <div class="computing_act">
+
+                                        <input type="button" class="add" id="plus">
+                                        <input type="button" class="reduce" id="minus">
+                                    </div>
+                                </div>
+                                <div class="shopping_div clearfix">
+                                        <a class="shopping_car" data-position="item_Cart" id="jCarbtn1"></a>
+                                </div>
+                                <div class="phonebuydiv">
+                                    <div id="phonebuy"></div>
+                                    <div id="m-qrcode" class="hide">
+                                            <img src="http://img.muyingzhijia.com/img/201701/20170109174050_9_xqy-160x200.png" alt="二维码" style="display:block;">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+						<li class='notice'>
+                            说明：
+                             <span >
+                                        <img src="http://static.boodoll.cn/app/v1/icons/g_success.png" style="width:14px; height:14px; display:inline-block; margin-right:3px; vertical-align: -2px;">出库15天内可退货
+                             </span>
+                        </li>
+					</ul>
+				</div>
+			</div>
+			<div class='historys'>
+				<h4>最近浏览</h4>
+				<ul class='list1'></ul>
+			</div>
+		</div>
+	</div>
+		<div class='clearfix content'>
+				<div class='part3_L-1'>
+				<div class='erwei_code'>
+					<img src="http://qr.liantu.com/api.php?text=http://m.muyingzhijia.com/Goods/4636.html" alt="">
+					<p class='erwei_intro'>
+						手机下单有惊喜<br/>
+						分享朋友更容易
+					</p>
+				</div>
+			</div>
+            <button style="width:100px;height:100px;background:green;border:1px solid #000;" class="maijia">进入卖家中心修改商品详情</button>
+			<div class='picshow'>
+				<p><img src="./img/img01.jpg" alt=""></p>
+				<p><img src="./img/img02.jpg" alt=""></p>
+				<p><img src="./img/img03.jpg" alt=""></p>
+			</div>
+		</div>
+
+	<footer></footer>
+	<div id="easyDialogBox" ><div class="jumpBox" id="addproduct" style="display: block; margin: 0px;">
+        <div class="closeff"></div>
+        <div class="jumpTop" id="easyDialogTitle">温馨提醒</div>
+        <div class="jumpIn" id="jumpInCon">
+            <span class="jumpIn1"><i class="jumpicon1"></i>加入成功</span>
+            <div class="jumpIn2"></div>
+            <div class="jumpIn3" style="display: block;">
+                <a class="status1" id="goshopping" href="./html/list.html" target="_self">继续购物</a>
+                <a class="status2" id="closeShop" href='./html/cart.html'>去结算</a>
+            </div>
+
+        </div>
+    </div></div>
+</body>
+</html>

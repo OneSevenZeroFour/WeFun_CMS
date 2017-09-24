@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/A0150315/littleProject#readme",
   "dependencies": {
+    "body-parser": "^1.18.1",
     "gulp-clean-css": "^3.7.0",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.0.0",
